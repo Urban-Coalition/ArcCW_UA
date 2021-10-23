@@ -64,10 +64,10 @@ SWEP.MagID = "m60" -- the magazine pool this gun draws from
 SWEP.ShootVol = 110 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.FirstShootSound = "weapons/arccw_uc/m60/fire_first.ogg"
-SWEP.ShootSound = {"weapons/arccw_uc/m60/fire_auto_1.ogg", "weapons/arccw_uc/m60/fire_auto_2.ogg"}
+SWEP.FirstShootSound = "weapons/arccw_ue/m60/fire_first.ogg"
+SWEP.ShootSound = {"weapons/arccw_ue/m60/fire_auto_1.ogg", "weapons/arccw_ue/m60/fire_auto_2.ogg"}
 SWEP.ShootSoundSilenced = "arccw_go/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = "weapons/arccw_uc/m60/fire_dist.ogg"
+SWEP.DistantShootSound = "weapons/arccw_ue/m60/fire_dist.ogg"
 
 SWEP.MuzzleEffect = "muzzleflash_minimi"
 SWEP.ShellModel = "models/shells/shell_556.mdl"

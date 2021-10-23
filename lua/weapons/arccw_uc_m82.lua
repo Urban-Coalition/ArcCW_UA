@@ -80,8 +80,8 @@ SWEP.MagID = "svd" -- the magazine pool this gun draws from
 SWEP.ShootVol = 110 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-local path = "weapons/arccw_uc/m82/"
-local common = "weapons/arccw_ud/common/"
+local path = ")^weapons/arccw_ue/m82/"
+local common = ")^/arccw_uc/common/"
 
 SWEP.ShootSound = path .. "fire.ogg"
 SWEP.ShootSoundSilenced = path .. "supp.ogg"
@@ -282,7 +282,7 @@ SWEP.Animations = {
         Time = 13 / 35,
         ShellEjectAt = 0,
         SoundTable = {
-            {s = "weapons/arccw_uc/m82/mech.ogg", t = 0}
+            {s = "weapons/arccw_ue/m82/mech.ogg", t = 0}
         },
     },
     ["fire_iron"] = {
@@ -290,7 +290,7 @@ SWEP.Animations = {
         Time = 13 / 35,
         ShellEjectAt = 0,
         SoundTable = {
-            {s = "weapons/arccw_uc/m82/mech.ogg", t = 0}
+            {s = "weapons/arccw_ue/m82/mech.ogg", t = 0}
         },
     },
     ["reload"] = {
