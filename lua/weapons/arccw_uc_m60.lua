@@ -40,15 +40,21 @@ SWEP.RecoilPunch = 5
 
 SWEP.ShootPitchVariation = 0
 
-SWEP.Delay = 60 / 550 -- 60 / RPM.
-SWEP.Num = 1 -- number of shots per trigger pull.
+SWEP.TriggerDelay = true
+
+SWEP.Delay = 60 / 550
+SWEP.Num = 1
 SWEP.Firemodes = {
     {
         Mode = 2,
+        Mult_TriggerDelayTime = 1,
     },
     {
-        Mode = 0
-    }
+        Mode = 1,
+    },
+    {
+        Mode = 0,
+    },
 }
 
 SWEP.NPCWeaponType = "weapon_ar2"
@@ -64,8 +70,7 @@ SWEP.MagID = "m60" -- the magazine pool this gun draws from
 SWEP.ShootVol = 110 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.FirstShootSound = "weapons/arccw_ue/m60/fire_first.ogg"
-SWEP.ShootSound = {"weapons/arccw_ue/m60/fire_auto_1.ogg", "weapons/arccw_ue/m60/fire_auto_2.ogg"}
+SWEP.ShootSound = {"weapons/arccw_ue/m60/fire_auto_1.ogg", "weapons/arccw_ue/m60/fire_auto_2.ogg", "weapons/arccw_ue/m60/fire_auto_3.ogg", "weapons/arccw_ue/m60/fire_auto_4.ogg", "weapons/arccw_ue/m60/fire_auto_5.ogg", }
 SWEP.ShootSoundSilenced = "arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound = "weapons/arccw_ue/m60/fire_dist.ogg"
 
@@ -353,6 +358,13 @@ SWEP.Animations = {
         LHIKIn = 0.7,
         LHIKOut = 0.8,
         LastClip1OutTime = 2,
+    },
+    ["trigger"] = {
+        Source = "idle",
+        Time = 0.1,
+        SoundTable = {
+            {s = "weapons/arccw_ue/m60/bolt_forward.ogg",         t = 0, c = ci},
+        },
     },
 }
 
