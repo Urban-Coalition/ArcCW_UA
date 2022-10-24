@@ -18,15 +18,15 @@ SWEP.Slot = 3
 
 SWEP.UseHands = true
 
-SWEP.ViewModel = "models/weapons/arccw/c_bo2_m82.mdl"
-SWEP.WorldModel = "models/weapons/arccw/c_bo2_m82.mdl"
+SWEP.ViewModel = "models/weapons/arccw/mifl/fas2/c_m82.mdl"
+SWEP.WorldModel = "models/weapons/arccw/mifl/fas2/c_m82.mdl"
+SWEP.ViewModelFOV = 57
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
     pos        =    Vector(-4.5, 4, -7.5),
     ang        =    Angle(-6, 0, 180),
     bone    =    "ValveBiped.Bip01_R_Hand",
 }
-SWEP.ViewModelFOV = 60
 
 SWEP.DefaultBodygroups = "00010000000"
 
@@ -43,11 +43,11 @@ SWEP.TracerNum = 1 -- tracer every X
 SWEP.TracerCol = Color(255, 25, 25)
 SWEP.TracerWidth = 3
 
-SWEP.ChamberSize = 0 -- how many rounds can be chambered.
-SWEP.Primary.ClipSize = 5 -- DefaultClip is automatically set.
-SWEP.ExtendedClipSize = 20
+SWEP.ChamberSize = 1 -- how many rounds can be chambered.
+SWEP.Primary.ClipSize = 8 -- DefaultClip is automatically set.
+SWEP.ExtendedClipSize = 10
 
-SWEP.Recoil = 5
+SWEP.Recoil = 4
 SWEP.RecoilSide = 2
 SWEP.RecoilRise = 2
 SWEP.SpeedMult = 0.7
@@ -83,14 +83,49 @@ SWEP.ShootPitch = 100 -- pitch of shoot sound
 local path = ")^weapons/arccw_ue/m82/"
 local common = ")^/arccw_uc/common/"
 
-SWEP.ShootSound = path .. "fire.ogg"
-SWEP.ShootSoundSilenced = path .. "supp.ogg"
-SWEP.DistantShootSound = path .. "fire_dist.ogg"
+SWEP.ShootSound = {
+    path .. "fire-01.ogg",
+    path .. "fire-02.ogg",
+    path .. "fire-03.ogg",
+    path .. "fire-04.ogg",
+    path .. "fire-05.ogg",
+    path .. "fire-06.ogg"
+}
+SWEP.ShootSoundSilenced = path .. "fire-sup-06.ogg"
+SWEP.DistantShootSound = nil
+SWEP.DistantShootSoundSilenced = nil
+SWEP.ShootDrySound = path .. "dryfire.ogg"
+
+SWEP.DistantShootSoundOutdoors = {
+    path .. "fire-dist-01.ogg",
+    path .. "fire-dist-02.ogg",
+    path .. "fire-dist-03.ogg",
+    path .. "fire-dist-04.ogg",
+    path .. "fire-dist-05.ogg",
+    path .. "fire-dist-06.ogg"
+}
+SWEP.DistantShootSoundIndoors = {
+    common .. "fire-dist-int-shotgun-01.ogg",
+    common .. "fire-dist-int-shotgun-02.ogg",
+    common .. "fire-dist-int-shotgun-03.ogg",
+    common .. "fire-dist-int-shotgun-04.ogg",
+    common .. "fire-dist-int-shotgun-05.ogg",
+    common .. "fire-dist-int-shotgun-06.ogg"
+}
+SWEP.DistantShootSoundOutdoorsSilenced = {
+    common .. "sup_tail.ogg"
+}
+SWEP.DistantShootSoundIndoorsSilenced = {
+    common .. "sup_tail.ogg"
+}
+SWEP.DistantShootSoundOutdoorsVolume = 1
+SWEP.DistantShootSoundIndoorsVolume = 1
+SWEP.Hook_AddShootSound = ArcCW.UC.InnyOuty
 
 SWEP.MuzzleEffect = "muzzleflash_1"
 SWEP.ShellModel = "models/shells/shell_556.mdl"
-SWEP.ShellPitch = 95
-SWEP.ShellScale = 2
+SWEP.ShellPitch = 70
+SWEP.ShellScale = 2.7
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
@@ -108,35 +143,32 @@ SWEP.ProceduralIronFire = false
 SWEP.CaseBones = {}
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-2.91, 4, 1),
-    Ang = Angle(0.1, 0.05, 0),
-    Magnification = 1.1,
-    CrosshairInSights = true,
-    SwitchToSound = "", -- sound that plays when switching to this sight
+    Pos = Vector(-4.249, -5, 2.39),
+    Ang = Angle(0, 0, 0),
+    Magnification = 1.05,
 }
 
 SWEP.HoldtypeHolstered = "passive"
 SWEP.HoldtypeActive = "ar2"
 SWEP.HoldtypeSights = "rpg"
 
-SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
+SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_RPG
 
-SWEP.ActivePos = Vector(0, 2, 1)
+SWEP.ActivePos = Vector(1, 2, 1)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
-SWEP.SprintPos = Vector(0, 2, 1)
-SWEP.SprintAng = Angle(0, 0, 0)
-
-SWEP.CustomizePos = Vector(20, 8, -4.5)
-SWEP.CustomizeAng = Angle(15, 40, 0)
-
-SWEP.HolsterPos = Vector(3, -3, 1)
-SWEP.HolsterAng = Angle(-7.036, 30.016, 0)
+SWEP.HolsterPos = Vector(1, 0, 2)
+SWEP.HolsterAng = Angle(-5, 5, 0)
 
 SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
 SWEP.BarrelOffsetHip = Vector(2, 0, -2)
 
-SWEP.BarrelLength = 35
+SWEP.CrouchPos = Vector(-1, 1, -1)
+SWEP.CrouchAng = Angle(0, 0, -10)
+
+SWEP.BarrelLength = 60
+
+SWEP.ShellRotateAngle = Angle(0, 90, 0)
 
 SWEP.AttachmentElements = {
     ["rail"] = {
@@ -174,74 +206,76 @@ SWEP.Attachments = {
     {
         PrintName = "Optic", -- print name
         DefaultAttName = "Iron Sights",
-        Slot = {"optic_sniper", "optic", "bo2_m82scope"}, -- what kind of attachments can fit here, can be string or table
-        Bone = "tag_weapon", -- relevant bone any attachments will be mostly referring to
+        Slot = {"optic", "optic_lp", "optic_fas1_m82"}, -- what kind of attachments can fit here, can be string or table
+        Bone = "M82_Body", -- relevant bone any attachments will be mostly referring to
         Offset = {
-            vpos = Vector(4, 0, 3.8),
-            vang = Angle(0, 0, 0),
+            vpos = Vector(0, -2, 3.9), -- offset that the attachment will be relative to the bone
+            vang = Angle(90, -90, -90),
+            wpos = Vector(9, 0.739, -6.801),
+            wang = Angle(-10, 0, 180)
         },
-        InstalledEles = {"rail"},
-    },--1
+        CorrectiveAng = Angle(180, 0, 0),
+        InstalledEles = {"noch"},
+        ExtraSightDist = 3
+    },
     {
-        PrintName = "Muzzle",
-        DefaultAttName = "Standard Muzzle",
-        Slot = "muzzle",
-        VMScale = Vector(4, 2.5, 2.5),
-        WMScale = Vector(4, 2.5, 2.5),
-        Bone = "tag_weapon",
+        PrintName = "Barrel",
+        DefaultAttName = "Standard Barrel",
+        Slot = "mifl_fas2_m82_hg",
+        Bone = "M82_Body",
         Offset = {
-            vpos = Vector(37, 0, 2.3),
-            vang = Angle(0, 0, 90),
+            vpos = Vector(0.5, 6, -1),
+            vang = Angle(90, -90, -90),
         },
-        InstalledEles = {"muzzle"}
-    },--2
+    },
     {
         PrintName = "Underbarrel",
-        Slot = {"foregrip", "bo1_bipod"},
-        Bone = "tag_weapon",
+        Slot = {"foregrip", "ubgl"},
+        Bone = "M82_Body",
         Offset = {
-            vpos = Vector(16, 0, 1.25),
-            vang = Angle(0, 0, 0),
+            vang = Angle(90, -90, -90),
+            wpos = Vector(14.329, 0.602, -4.453),
+            wang = Angle(-10.216, 0, 180)
         },
-        MergeSlots = {4},
-        InstalledEles = {"ub"}
-    },--3
-    { --4
-        Hidden = true,
-        Slot = {"bipod"},
-        Bone = "tag_weapon",
-        Offset = {
-            vpos = Vector(21, 0, 1.75),
-            vang = Angle(0, 0, 0),
+        SlideAmount = {
+            vmin = Vector(0, 7, 0),
+            vmax = Vector(0, 15, 0),
+            wmin = Vector(19, 0.832, -6),
+            wmax = Vector(19, 0.832, -6),
         },
+        ExcludeFlags = {"mifl_fas2_m82_obrez"},			
     },
-    { --5
+    {
         PrintName = "Tactical",
-        Slot = {"tac", "bo1_tacslot"},
-        Bone = "tag_weapon",
+        Slot = "tac",
+        Bone = "M82_Body",
         Offset = {
-            vpos = Vector(20, -0.5, 2.25),
-            vang = Angle(0, 0, 90),
+            vpos = Vector(-0.8, 2, -1.2), -- offset that the attachment will be relative to the bone
+            vang = Angle(180, -90, 90),
         },
+        ExtraSightDist = 22,
+        CorrectivePos = Vector(2, -2, 0),
     },
-    { --6
+    {
         PrintName = "Ammo Type",
-        Slot = {"ammo_pap"}
+        Slot = "go_ammo",
+        DefaultAttName = "Standard Ammo"
     },
-    { --7
+    {
         PrintName = "Perk",
-        Slot = "bo1_perk"
+        Slot = {"go_perk", "perk_fas2"}
     },
     {
         PrintName = "Charm",
-        Slot = "charm",
-        FreeSlot = true,
-        Bone = "tag_weapon", -- relevant bone any attachments will be mostly referring to
+        DefaultAttName = "None",
+        Slot = {"charm"},
+        Bone = "M82_Body",
         Offset = {
-            vpos = Vector(6.5, -0.5, 1.5),
-            vang = Angle(0, 0, 0),
+            vpos = Vector(1.5, -3, 0),
+            vang = Angle(90, -90, -90),
         },
-    },--8
+        FreeSlot = true,
+    },
 }
 
 SWEP.Hook_ModifyBodygroups = function(wep, data)
@@ -251,61 +285,65 @@ SWEP.Hook_ModifyBodygroups = function(wep, data)
     if papcamo then return vm:SetSkin(3) end
 end
 
+function SWEP:SelectReloadAnimation()
+    local ret
+    local inbipod = (self:InBipod()) and "_bipod" or ""
+    local nomen = self:GetBuff_Override("Override_FAS2NomenBackup") and "_nomen" or ""
+    local empty = (self:Clip1() == 0) and "_empty" or ""
+
+    ret = "reload" .. inbipod .. nomen .. empty
+
+    return ret
+end
+
 SWEP.Animations = {
-    ["idle"] = {
-        Source = "idle",
-        Time = 1 / 35,
-    },
     ["draw"] = {
-        Source = "draw",
-        Time = 1.86,
-        LHIK = true,
-        LHIKIn = 0.2,
-        LHIKOut = 0.25,
-    },
-    ["holster"] = {
-        Source = "holster",
-        Time = 1.45,
-        LHIK = true,
-        LHIKIn = 0.2,
+        Source = "deploy",
+        MinProgress = 30 / 35,
+        LHIK = false,
+        LHIKIn = 0,
         LHIKOut = 0.25,
     },
     ["ready"] = {
-        Source = "draw",
-        Time = 1.86,
-        LHIK = true,
-        LHIKIn = 0.2,
+        Source = "deploy_first",
+        LHIK = false,
+        LHIKIn = 0,
         LHIKOut = 0.25,
     },
+    ["idle"] = {
+        Source = "idle",
+    },
+    ["idle_bipod"] = {
+        Source = "bipod_idle",
+    },
     ["fire"] = {
-        Source = {"shoot"},
-        Time = 13 / 35,
+        Source = {"fire","fire_2","fire_3"},
         ShellEjectAt = 0,
-        SoundTable = {
-            {s = "weapons/arccw_ue/m82/mech.ogg", t = 0}
-        },
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
+    },
+    ["fire_bipod"] = {
+        Source = "bipod_fire",
+        Time = 31 / 35,
+        ShellEjectAt = 0,
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.15 }},
     },
     ["fire_iron"] = {
-        Source = "shoot",
-        Time = 13 / 35,
+        Source = "iron",
         ShellEjectAt = 0,
-        SoundTable = {
-            {s = "weapons/arccw_ue/m82/mech.ogg", t = 0}
-        },
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }},
     },
     ["reload"] = {
         Source = "reload",
-        Time = 114 / 35,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         Checkpoints = {33, 55},
         FrameRate = 30,
         SoundTable = {
             {s = common .. "cloth_4.ogg", t = 0},
-            {s = path .. "magrel.ogg", t = 0.4},
-            {s = path .. "magout.ogg", t = 0.5},
-            {s = common .. "cloth_2.ogg", t = 1.0},
-            {s = path .. "magin.ogg", t = 1.6},
-            {s = common .. "shoulder.ogg", t = 2.25},
+            {s = path .. "magrel.ogg", t = 1.1},
+            {s = path .. "magout.ogg", t = 1.3},
+            {s = common .. "cloth_2.ogg", t = 1.6},
+            {s = path .. "magin.ogg", t = 2.6},
+            {s = common .. "shoulder.ogg", t = 3.8},
         },
         LHIK = true,
         LHIKIn = 0.5,
@@ -313,36 +351,87 @@ SWEP.Animations = {
     },
     ["reload_empty"] = {
         Source = "reload_empty",
-        Time = 142 / 35,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         Checkpoints = {33, 55, 88},
         FrameRate = 30,
         SoundTable = {
             {s = common .. "cloth_4.ogg", t = 0},
-            {s = path .. "magrel.ogg", t = 0.4},
-            {s = path .. "magout.ogg", t = 0.5},
-            {s = common .. "cloth_2.ogg", t = 1.0},
-            {s = path .. "magin.ogg", t = 1.6},
+            {s = path .. "magrel.ogg", t = 1.1},
+            {s = path .. "magout.ogg", t = 1.3},
+            {s = common .. "cloth_2.ogg", t = 1.6},
+            {s = path .. "magin.ogg", t = 2.6},
             {s = common .. "cloth_1.ogg", t = 2.0},
-            {s = path .. "chback.ogg", t = 2.7},
-            {s = common .. "cloth_3.ogg", t = 3.0},
-            {s = path .. "chamber.ogg", t = 3.3},
-            {s = common .. "shoulder.ogg", t = 3.7},
+            {s = path .. "chback.ogg", t = 4.5},
+            {s = common .. "cloth_3.ogg", t = 4.6},
+            {s = path .. "chamber.ogg", t = 5.0},
+            {s = common .. "shoulder.ogg", t = 5.8},
         },
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.5,
     },
-    ["enter_sprint"] = {
-        Source = "sprint_in",
-        Time = 10 / 30
+    ["reload_nomen"] = {
+        Source = "reload_nomen",
+        Time = 117 / 35,
+        MinProgress = 2,
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
     },
-    ["idle_sprint"] = {
-        Source = "sprint_loop",
-        Time = 30 / 40
+    ["reload_nomen_empty"] = {
+        Source = "reload_empty_nomen",
+        MinProgress = 2,
+        Time = 150 / 35,
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
     },
-    ["exit_sprint"] = {
-        Source = "sprint_out",
-        Time = 10 / 30
+    ["enter_bipod"] = {
+        Source = "bipod_dn",
+        Time = 110 / 35,
+        LHIK = true,
+        LHIKIn = 0.2,
+        LHIKOut = 0,
+		Mult = 0.7,
+    },
+    ["exit_bipod"] = {
+        Source = "bipod_up",
+        Time = 102 / 35,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0.4,
+		Mult = 0.7,		
+    },
+    ["reload_bipod"] = {
+        Source = "bipod_reload",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        MinProgress = 2.5,
+        LastClip1OutTime = 3,
+        LHIK = true,
+        LHIKIn = 0.5,
+        LHIKOut = 0.5
+    },
+    ["reload_bipod_empty"] = {
+        Source = "bipod_reload_empty",
+        MinProgress = 2.5,
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        LastClip1OutTime = 2,
+        LHIK = true,
+        LHIKIn = 0.5,
+        LHIKOut = 0.5
+    },
+    ["reload_bipod_nomen"] = {
+        Source = "bipod_reload_nomen",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        MinProgress = 1.5,
+        LastClip1OutTime = 3,
+        LHIK = true,
+        LHIKIn = 0.5,
+        LHIKOut = 0.5
+    },
+    ["reload_bipod_nomen_empty"] = {
+        Source = "bipod_reload_empty_nomen",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        MinProgress = 1.5,
+        LastClip1OutTime = 2,
+        LHIK = true,
+        LHIKIn = 0.5,
+        LHIKOut = 0.5
     },
 }
