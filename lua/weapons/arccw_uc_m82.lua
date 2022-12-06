@@ -30,13 +30,13 @@ SWEP.WorldModelOffset = {
 
 SWEP.DefaultBodygroups = "00010000000"
 
-SWEP.Damage = 150
-SWEP.DamageMin = 120 -- damage done at maximum range
-SWEP.Range = 1400 -- in METRES
+SWEP.Damage = 245
+SWEP.DamageMin = 170 -- damage done at maximum range
+SWEP.Range = 1800 -- in METRES
 SWEP.Penetration = 20
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
-SWEP.MuzzleVelocity = 2799 -- projectile or phys bullet muzzle velocity
+SWEP.MuzzleVelocity = 2800 -- projectile or phys bullet muzzle velocity
 -- IN M/S
 
 SWEP.TracerNum = 1 -- tracer every X
@@ -77,7 +77,7 @@ SWEP.MoveDispersion = 250
 SWEP.Primary.Ammo = "SniperPenetratedRound" -- what ammo type the gun uses
 SWEP.MagID = "svd" -- the magazine pool this gun draws from
 
-SWEP.ShootVol = 110 -- volume of shoot sound
+SWEP.ShootVol = 500 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
 local path = ")^weapons/arccw_ue/m82/"
@@ -317,7 +317,7 @@ SWEP.Animations = {
         Source = "bipod_idle",
     },
     ["fire"] = {
-        Source = {"fire","fire_2","fire_3"},
+        Source = "fire",
         ShellEjectAt = 0,
         SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
     },
@@ -335,26 +335,24 @@ SWEP.Animations = {
     ["reload"] = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        Checkpoints = {33, 55},
         FrameRate = 30,
-        SoundTable = {
+        --[[SoundTable = {
             {s = common .. "cloth_4.ogg", t = 0},
             {s = path .. "magrel.ogg", t = 1.1},
             {s = path .. "magout.ogg", t = 1.3},
             {s = common .. "cloth_2.ogg", t = 1.6},
             {s = path .. "magin.ogg", t = 2.6},
             {s = common .. "shoulder.ogg", t = 3.8},
-        },
+        },]]
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.5,
     },
     ["reload_empty"] = {
-        Source = "reload_empty",
+        Source = "reload_empty_compact",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        Checkpoints = {33, 55, 88},
         FrameRate = 30,
-        SoundTable = {
+        --[[SoundTable = {
             {s = common .. "cloth_4.ogg", t = 0},
             {s = path .. "magrel.ogg", t = 1.1},
             {s = path .. "magout.ogg", t = 1.3},
@@ -365,7 +363,7 @@ SWEP.Animations = {
             {s = common .. "cloth_3.ogg", t = 4.6},
             {s = path .. "chamber.ogg", t = 5.0},
             {s = common .. "shoulder.ogg", t = 5.8},
-        },
+        },]]
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.5,
