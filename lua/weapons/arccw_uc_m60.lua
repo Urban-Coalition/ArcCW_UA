@@ -5,10 +5,12 @@ SWEP.AdminOnly = false
 
 SWEP.PrintName = "M60"
 SWEP.Trivia_Class = "General Purpose Machine Gun"
-SWEP.Trivia_Desc = "rabo"
+SWEP.Trivia_Desc = [[Classic machine gun with a beefy profile and a beefy cartridge. Despite glaring reliability issues, it is remembered fondly as an icon of the Vietnam War. Troops have affectionately nicknamed it "the Pig" for its bulkiness and demanding ammo consumption.
+
+As one of the heaviest infantry weapons available, it handles the round's recoil quite well, especially when mounted.]]
 SWEP.Trivia_Manufacturer = "U.S. Ordnance"
 SWEP.Trivia_Calibre = "7.62x51mm NATO"
-SWEP.Trivia_Mechanism = "Gas-Operated Short-Stroke Piston"
+SWEP.Trivia_Mechanism = "Gas-Operated Open Bolt"
 SWEP.Trivia_Country = "United States"
 SWEP.Trivia_Year = 1957
 
@@ -48,9 +50,6 @@ SWEP.Firemodes = {
     {
         Mode = 2,
         Mult_TriggerDelayTime = 1,
-    },
-    {
-        Mode = 1,
     },
     {
         Mode = 0,

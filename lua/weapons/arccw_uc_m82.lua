@@ -4,13 +4,13 @@ SWEP.Category = "ArcCW - Urban Coalition" -- edit this if you like
 SWEP.AdminOnly = false
 
 SWEP.PrintName = "Barrett M82"
-SWEP.Trivia_Class = "Anti-Materiel Precision Rifle"
-SWEP.Trivia_Desc = [[
-    American .50 caliber precision rifle. Very heavy, very powerful and extremely dangerous in the right hands.
-]]
-SWEP.Trivia_Manufacturer = "Barrett"
-SWEP.Trivia_Calibre = ".50 BMG"
-SWEP.Trivia_Mechanism = "Recoil Operated, Rotating Bolt"
+SWEP.Trivia_Class = "Anti-materiel Rifle"
+SWEP.Trivia_Desc = [[Massive, barely man-portable rifle. Informally called the "Light Fifty" for its caliber, it has been adopted by militaries and insurgents worldwide for a variety of purposes, including anti-materiel, extreme distance combat, and ordnance disposal.
+    
+Chambered for a mounted machine gun cartridge designed to punch holes in aircraft and armored vehicles. To shoot a man with it might be overkill.]]
+SWEP.Trivia_Manufacturer = "Barrett Firearms Manufacturing"
+SWEP.Trivia_Calibre = ".50 Browning Machine Gun"
+SWEP.Trivia_Mechanism = "Recoil-Operated Rotating Bolt"
 SWEP.Trivia_Country = "USA"
 SWEP.Trivia_Year = 1980
 

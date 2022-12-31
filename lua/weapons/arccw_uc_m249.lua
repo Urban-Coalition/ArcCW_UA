@@ -28,13 +28,13 @@ SWEP.TrueName = "Minimi"
 
 -- Trivia --
 
-SWEP.Trivia_Class = "LMG"
-SWEP.Trivia_Desc = "large"
-SWEP.Trivia_Manufacturer = "EFFAYEN"
-SWEP.Trivia_Calibre = "5.56×45mm NATO"
-SWEP.Trivia_Mechanism = "Gas-Actuated Long-Stroke Piston"
+SWEP.Trivia_Class = "Light Machine Gun"
+SWEP.Trivia_Desc = "Compact, fast-firing light machine gun, adopted by the US Army in search of a more soldier-friendly alternative to the M60. Its huge ammo box carries an unprecedented quantity of rounds, which are dispensed downrange at a rate that will force the enemy's heads to stay down. In emergencies, it can also accept STANAG magazines."
+SWEP.Trivia_Manufacturer = "FN Herstal"
+SWEP.Trivia_Calibre = "5.56x45mm NATO"
+SWEP.Trivia_Mechanism = "Gas-Operated Open Bolt"
 SWEP.Trivia_Country = "Belgium"
-SWEP.Trivia_Year = 1974
+SWEP.Trivia_Year = 1977
 
 -- Weapon slot --
 
@@ -88,9 +88,6 @@ SWEP.Num = 1
 SWEP.Firemodes = {
     {
         Mode = 2,
-    },
-    {
-        Mode = 1,
     },
     {
         Mode = 0
