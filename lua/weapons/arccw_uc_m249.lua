@@ -1,6 +1,7 @@
 SWEP.Base = "arccw_base"
 SWEP.Spawnable = true
 SWEP.Category = "ArcCW - Urban Coalition"
+SWEP.UC_CategoryPack = "4Urban Anarchy"
 SWEP.AdminOnly = false
 SWEP.UseHands = true
 
@@ -8,7 +9,7 @@ SWEP.UseHands = true
 
 SWEP.MuzzleEffect = "muzzleflash_1"
 SWEP.ShellModel = "models/shells/shell_556.mdl"
-SWEP.ShellScale = 1.4
+SWEP.ShellScale = 1
 SWEP.ShellMaterial = "models/weapons/arcticcw/shell_556"
 SWEP.ShellPitch = 100
 
@@ -29,8 +30,8 @@ SWEP.TrueName = "Minimi"
 -- Trivia --
 
 SWEP.Trivia_Class = "Light Machine Gun"
-SWEP.Trivia_Desc = "Compact, fast-firing light machine gun, adopted by the US Army in search of a more soldier-friendly alternative to the M60. Its huge ammo box carries an unprecedented quantity of rounds, which are dispensed downrange at a rate that will force the enemy's heads to stay down. In emergencies, it can also accept STANAG magazines."
-SWEP.Trivia_Manufacturer = "FN Herstal"
+SWEP.Trivia_Desc = "Compact, fast-firing light machine gun, adopted by the US Army in search of a more soldier-friendly alternative to the M60. Its huge ammo box can carry an unprecedented quantity of rounds, which are dispensed downrange at a rate that will force the enemy's heads to stay down. In emergencies, it can also accept STANAG magazines."
+SWEP.Trivia_Manufacturer = "Not FN Herstal"
 SWEP.Trivia_Calibre = "5.56x45mm NATO"
 SWEP.Trivia_Mechanism = "Gas-Operated Open Bolt"
 SWEP.Trivia_Country = "Belgium"
@@ -44,7 +45,7 @@ SWEP.Slot = 2
 
 if GetConVar("arccw_truenames"):GetBool() then
     SWEP.PrintName = SWEP.TrueName
-    SWEP.Trivia_Manufacturer = "FN"
+    SWEP.Trivia_Manufacturer = "FN Herstal"
 end
 
 -- Viewmodel / Worldmodel / FOV --
@@ -56,10 +57,10 @@ SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 
 -- Damage parameters --
 
-SWEP.Damage = 30
-SWEP.DamageMin = 17
+SWEP.Damage = ArcCW.UC.StdDmg["556"].max
+SWEP.DamageMin = ArcCW.UC.StdDmg["556"].min
 SWEP.Range = 150
-SWEP.Penetration = 14
+SWEP.Penetration = ArcCW.UC.StdDmg["556"].pen
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil
 SWEP.MuzzleVelocity = 823 
@@ -67,9 +68,7 @@ SWEP.MuzzleVelocity = 823
 -- Mag size --
 
 SWEP.ChamberSize = 0
-SWEP.Primary.ClipSize = 20
-SWEP.ExtendedClipSize = 200
-SWEP.ReducedClipSize = 30
+SWEP.Primary.ClipSize = 100
 
 -- Recoil --
 
@@ -165,7 +164,27 @@ local common = ")^/arccw_uc/common/"
 SWEP.FirstShootSound = path .. "fire_first.ogg"
 SWEP.ShootSound = path .. "fire_auto.ogg"
 SWEP.ShootSoundSilenced = path .. "supp.ogg"
-SWEP.DistantShootSound = path .. "fire_dist.ogg"
+SWEP.DistantShootSound = nil
+SWEP.DistantShootSoundOutdoors = {
+    path .. "fire_dist.ogg"
+ } -- Temp
+SWEP.DistantShootSoundIndoors = {
+    common .. "fire-dist-int-rifle-01.ogg",
+    common .. "fire-dist-int-rifle-02.ogg",
+    common .. "fire-dist-int-rifle-03.ogg",
+    common .. "fire-dist-int-rifle-04.ogg",
+    common .. "fire-dist-int-rifle-05.ogg",
+    common .. "fire-dist-int-rifle-06.ogg"
+}
+SWEP.DistantShootSoundOutdoorsSilenced = {
+    common .. "sup_tail.ogg"
+}
+SWEP.DistantShootSoundIndoorsSilenced = {
+    common .. "sup_tail.ogg"
+}
+SWEP.DistantShootSoundOutdoorsVolume = 1
+SWEP.DistantShootSoundIndoorsVolume = 1
+SWEP.Hook_AddShootSound = ArcCW.UC.InnyOuty
 
 -- Bodygroups --
 
@@ -488,8 +507,25 @@ SWEP.Attachments = {
         },
     },
     {
-        PrintName = "Perk",
-        Slot = "go_perk",
+        PrintName = "Ammo Type",
+        DefaultAttName = "\"FMJ\" Full Metal Jacket",
+        DefaultAttIcon = Material("entities/att/arccw_uc_ammo_generic.png", "mips smooth"),
+        Slot = "uc_ammo",
+    },
+    {
+        PrintName = "Powder Load",
+        Slot = "uc_powder",
+        DefaultAttName = "Standard Load"
+    },
+    {
+        PrintName = "Training Package",
+        Slot = "uc_tp",
+        DefaultAttName = "Basic Training"
+    },
+    {
+        PrintName = "Internals",
+        Slot = "uc_fg", -- Fire group
+        DefaultAttName = "Standard Internals"
     },
     {
         PrintName = "Charm",
@@ -500,11 +536,5 @@ SWEP.Attachments = {
             vpos = Vector(0.5, -0.1, -14),
             vang = Angle(90, 0, -90),
         },
-    },
-    {
-        PrintName = "Skin",
-        Slot = {"skin_lpak"},
-        DefaultAttName = "Wood",
-        FreeSlot = true,
     },
 }

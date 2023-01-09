@@ -1,13 +1,15 @@
 SWEP.Base = "arccw_base"
 SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "ArcCW - Urban Coalition" -- edit this if you like
+SWEP.UC_CategoryPack = "4Urban Anarchy"
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "Barrett M82"
+SWEP.PrintName = "Fuck-You-In-Particular-inator"
+SWEP.TrueName = "M82A1"
 SWEP.Trivia_Class = "Anti-materiel Rifle"
-SWEP.Trivia_Desc = [[Massive, barely man-portable rifle. Informally called the "Light Fifty" for its caliber, it has been adopted by militaries and insurgents worldwide for a variety of purposes, including anti-materiel, extreme distance combat, and ordnance disposal.
+SWEP.Trivia_Desc = [[Arguably the most recognizable anti-materiel rifle. As the first shoulder-fired weapon of its caliber, this massive, barely man-portable rifle has been adopted by militaries and outlaws worldwide to help individual marksmen counter heavy targets.
     
-Chambered for a mounted machine gun cartridge designed to punch holes in aircraft and armored vehicles. To shoot a man with it might be overkill.]]
+Chambered for a mounted machine gun cartridge designed to punch holes through cover and armored vehicles. To shoot a man with it might be overkill (or great fun, depending on your tastes).]]
 SWEP.Trivia_Manufacturer = "Barrett Firearms Manufacturing"
 SWEP.Trivia_Calibre = ".50 Browning Machine Gun"
 SWEP.Trivia_Mechanism = "Recoil-Operated Rotating Bolt"
@@ -30,10 +32,10 @@ SWEP.WorldModelOffset = {
 
 SWEP.DefaultBodygroups = "00010000000"
 
-SWEP.Damage = 245
-SWEP.DamageMin = 170 -- damage done at maximum range
+SWEP.Damage = ArcCW.UC.StdDmg["50bmg"].max
+SWEP.DamageMin = ArcCW.UC.StdDmg["50bmg"].min -- damage done at maximum range
 SWEP.Range = 1800 -- in METRES
-SWEP.Penetration = 20
+SWEP.Penetration = ArcCW.UC.StdDmg["50bmg"].pen
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 SWEP.MuzzleVelocity = 2800 -- projectile or phys bullet muzzle velocity
@@ -44,8 +46,7 @@ SWEP.TracerCol = Color(255, 25, 25)
 SWEP.TracerWidth = 3
 
 SWEP.ChamberSize = 1 -- how many rounds can be chambered.
-SWEP.Primary.ClipSize = 8 -- DefaultClip is automatically set.
-SWEP.ExtendedClipSize = 10
+SWEP.Primary.ClipSize = 5 -- DefaultClip is automatically set.
 
 SWEP.Recoil = 4
 SWEP.RecoilSide = 2
@@ -70,7 +71,7 @@ SWEP.NPCWeaponType = {
 }
 SWEP.NPCWeight = 75
 
-SWEP.AccuracyMOA = 1 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
+SWEP.AccuracyMOA = 0.2 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
 SWEP.HipDispersion = 500 -- inaccuracy added by hip firing.
 SWEP.MoveDispersion = 250
 
@@ -220,7 +221,7 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Barrel",
-        DefaultAttName = "Standard Barrel",
+        DefaultAttName = "29\" Standard Barrel",
         Slot = "mifl_fas2_m82_hg",
         Bone = "M82_Body",
         Offset = {
@@ -258,12 +259,24 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Ammo Type",
-        Slot = "go_ammo",
-        DefaultAttName = "Standard Ammo"
+        DefaultAttName = "\"FMJ\" Full Metal Jacket",
+        DefaultAttIcon = Material("entities/att/arccw_uc_ammo_generic.png", "mips smooth"),
+        Slot = "uc_ammo",
     },
     {
-        PrintName = "Perk",
-        Slot = {"go_perk", "perk_fas2"}
+        PrintName = "Powder Load",
+        Slot = "uc_powder",
+        DefaultAttName = "Standard Load"
+    },
+    {
+        PrintName = "Training Package",
+        Slot = "uc_tp",
+        DefaultAttName = "Basic Training"
+    },
+    {
+        PrintName = "Internals",
+        Slot = "uc_fg", -- Fire group
+        DefaultAttName = "Standard Internals"
     },
     {
         PrintName = "Charm",

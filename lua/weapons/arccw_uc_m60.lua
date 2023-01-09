@@ -1,6 +1,7 @@
 SWEP.Base = "arccw_base"
 SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "ArcCW - Urban Coalition" -- edit this if you like
+SWEP.UC_CategoryPack = "4Urban Anarchy"
 SWEP.AdminOnly = false
 
 SWEP.PrintName = "M60"
@@ -24,10 +25,10 @@ SWEP.ViewModelFOV = 60
 
 SWEP.DefaultBodygroups = "0000000000"
 
-SWEP.Damage = 40
-SWEP.DamageMin = 32 -- damage done at maximum range
+SWEP.Damage = ArcCW.UC.StdDmg["762_51"].max
+SWEP.DamageMin = ArcCW.UC.StdDmg["762_51"].min -- damage done at maximum range
 SWEP.Range = 100 -- in METRES
-SWEP.Penetration = 15
+SWEP.Penetration = ArcCW.UC.StdDmg["762_51"].pen
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 SWEP.ChamberSize = 0 -- how many rounds can be chambered.
@@ -69,9 +70,33 @@ SWEP.MagID = "m60" -- the magazine pool this gun draws from
 SWEP.ShootVol = 110 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
+local path = ")^/weapons/arccw_ue/m60/"
+local common = ")^/arccw_uc/common/"
+
 SWEP.ShootSound = {"weapons/arccw_ue/m60/fire_auto_1.ogg", "weapons/arccw_ue/m60/fire_auto_2.ogg", "weapons/arccw_ue/m60/fire_auto_3.ogg", "weapons/arccw_ue/m60/fire_auto_4.ogg", "weapons/arccw_ue/m60/fire_auto_5.ogg", }
 SWEP.ShootSoundSilenced = "arccw_go/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = "weapons/arccw_ue/m60/fire_dist.ogg"
+SWEP.DistantShootSound = nil
+
+SWEP.DistantShootSoundOutdoors = {
+    path .. "fire_dist.ogg"
+ } -- Temp
+SWEP.DistantShootSoundIndoors = {
+    common .. "fire-dist-int-rifle-01.ogg",
+    common .. "fire-dist-int-rifle-02.ogg",
+    common .. "fire-dist-int-rifle-03.ogg",
+    common .. "fire-dist-int-rifle-04.ogg",
+    common .. "fire-dist-int-rifle-05.ogg",
+    common .. "fire-dist-int-rifle-06.ogg"
+}
+SWEP.DistantShootSoundOutdoorsSilenced = {
+    common .. "sup_tail.ogg"
+}
+SWEP.DistantShootSoundIndoorsSilenced = {
+    common .. "sup_tail.ogg"
+}
+SWEP.DistantShootSoundOutdoorsVolume = 1
+SWEP.DistantShootSoundIndoorsVolume = 1
+SWEP.Hook_AddShootSound = ArcCW.UC.InnyOuty
 
 SWEP.MuzzleEffect = "muzzleflash_minimi"
 SWEP.ShellModel = "models/shells/shell_556.mdl"
@@ -271,12 +296,24 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Ammo Type",
-        Slot = "go_ammo",
-        DefaultAttName = "Standard Ammo"
+        DefaultAttName = "\"FMJ\" Full Metal Jacket",
+        DefaultAttIcon = Material("entities/att/arccw_uc_ammo_generic.png", "mips smooth"),
+        Slot = "uc_ammo",
     },
     {
-        PrintName = "Perk",
-        Slot = "go_perk"
+        PrintName = "Powder Load",
+        Slot = "uc_powder",
+        DefaultAttName = "Standard Load"
+    },
+    {
+        PrintName = "Training Package",
+        Slot = "uc_tp",
+        DefaultAttName = "Basic Training"
+    },
+    {
+        PrintName = "Internals",
+        Slot = "uc_fg", -- Fire group
+        DefaultAttName = "Standard Internals"
     },
     {
         PrintName = "Charm",
@@ -366,52 +403,3 @@ SWEP.Animations = {
         },
     },
 }
-
-sound.Add({
-    name = "ARCCW_GO_M249.Draw",
-    channel = 16,
-    volume = 1.0,
-    sound = "arccw_go/m249/m249_draw.wav"
-})
-
-sound.Add({
-    name = "ARCCW_GO_M249.Coverup",
-    channel = 16,
-    volume = 1.0,
-    sound = "arccw_go/m249/m249_coverup.wav"
-})
-
-sound.Add({
-    name = "ARCCW_GO_M249.Coverdown",
-    channel = 16,
-    volume = 1.0,
-    sound = "arccw_go/m249/m249_coverdown.wav"
-})
-
-sound.Add({
-    name = "ARCCW_GO_M249.Boxout",
-    channel = 16,
-    volume = 1.0,
-    sound = "arccw_go/m249/m249_boxout.wav"
-})
-
-sound.Add({
-    name = "ARCCW_GO_M249.Boxin",
-    channel = 16,
-    volume = 1.0,
-    sound = "arccw_go/m249/m249_boxin.wav"
-})
-
-sound.Add({
-    name = "ARCCW_GO_M249.Pump",
-    channel = 16,
-    volume = 1.0,
-    sound = "arccw_go/m249/m249_pump.wav"
-})
-
-sound.Add({
-    name = "ARCCW_GO_M249.Chain",
-    channel = 16,
-    volume = 1.0,
-    sound = "arccw_go/m249/m249_chain.wav"
-})
