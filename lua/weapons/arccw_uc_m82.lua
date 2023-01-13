@@ -36,7 +36,7 @@ SWEP.Damage = ArcCW.UC.StdDmg["50bmg"].max
 SWEP.DamageMin = ArcCW.UC.StdDmg["50bmg"].min -- damage done at maximum range
 SWEP.Range = 1800 -- in METRES
 SWEP.Penetration = ArcCW.UC.StdDmg["50bmg"].pen
-SWEP.DamageType = DMG_BULLET
+SWEP.DamageType = DMG_AIRBOAT + DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 SWEP.MuzzleVelocity = 2800 -- projectile or phys bullet muzzle velocity
 -- IN M/S
