@@ -82,6 +82,8 @@ SWEP.MaxRecoilPunch = 1
 
 -- Firerate / Firemodes --
 
+SWEP.TriggerDelay = true
+
 SWEP.Delay = 60 / 800
 SWEP.Num = 1
 SWEP.Firemodes = {
@@ -135,10 +137,10 @@ SWEP.HoldtypeActive = "ar2"
 SWEP.HoldtypeSights = "rpg"
 
 SWEP.IronSightStruct = {
-     Pos = Vector(-3.44, 4, 2.3),
-     Ang = Angle(0.1, 0, 0),
-     Magnification = 1,
-     SwitchToSound = "",
+    Pos = Vector(-3.445, 0, 2),
+    Ang = Angle(0.1, 0, -2),
+    Magnification = 1,
+    SwitchToSound = "",
 }
 
 SWEP.ActivePos = Vector(0, 0, 0)
@@ -161,13 +163,28 @@ SWEP.WorldModelOffset = {
 
 local path = ")^weapons/arccw_ue/m249/"
 local common = ")^/arccw_uc/common/"
-SWEP.FirstShootSound = path .. "fire_first.ogg"
-SWEP.ShootSound = path .. "fire_auto.ogg"
-SWEP.ShootSoundSilenced = path .. "supp.ogg"
+
+SWEP.ShootSound = {
+    path .. "fire-01.ogg",
+    path .. "fire-02.ogg",
+    path .. "fire-03.ogg",
+    path .. "fire-04.ogg",
+    path .. "fire-05.ogg",
+    path .. "fire-06.ogg"
+}
+SWEP.ShootSoundSilenced = path .. "fire_supp.ogg"
 SWEP.DistantShootSound = nil
+SWEP.DistantShootSoundSilenced = common .. "sup_tail.ogg"
+SWEP.ShootDrySound = path .. "dryfire.ogg"
+
 SWEP.DistantShootSoundOutdoors = {
-    path .. "fire_dist.ogg"
- } -- Temp
+    path .. "fire-dist-01.ogg",
+    path .. "fire-dist-02.ogg",
+    path .. "fire-dist-03.ogg",
+    path .. "fire-dist-04.ogg",
+    path .. "fire-dist-05.ogg",
+    path .. "fire-dist-06.ogg"
+}
 SWEP.DistantShootSoundIndoors = {
     common .. "fire-dist-int-rifle-01.ogg",
     common .. "fire-dist-int-rifle-02.ogg",
@@ -275,23 +292,47 @@ SWEP.Animations = {
         Source = "draw",
         Framerate = 60,
     },
+    ["trigger"] = {
+        Source = "idle",
+        Time = 0.075,
+        SoundTable = {
+            {s = path .. "prefire.ogg",         t = 0, c = CHAN_WEAPON, v = 0.5},
+        },
+    },
+    ["trigger_iron"] = {
+        Source = "idle",
+        Time = 0.075,
+        SoundTable = {
+            {s = path .. "prefire.ogg",         t = 0, c = CHAN_WEAPON},
+        },
+    },
     ["fire"] = {
         Source = "fire",
         Framerate = 60,
         Time = 43 / 60,
         ShellEjectAt = 0.01,
-        SoundTable = {
-            { s = path .. "mech.ogg", t = 0, v = 60, c = ca },
-        },
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
+    },
+    ["fire_iron"] = {
+        Source = "fire",
+        Framerate = 60,
+        Time = 43 / 60,
+        ShellEjectAt = 0.01,
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }},
     },
     ["fire_empty"] = {
         Source = "fire_empty",
         Framerate = 60,
         Time = 43 / 60,
         ShellEjectAt = 0.01,
-        SoundTable = {
-            { s = path .. "mech.ogg", t = 0, v = 60, c = ca },
-        },
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
+    },
+    ["fire_iron_empty"] = {
+        Source = "fire_empty",
+        Framerate = 60,
+        Time = 43 / 60,
+        ShellEjectAt = 0.01,
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }},
     },
 
     -- 100-R Reloads --
@@ -315,11 +356,14 @@ SWEP.Animations = {
             { s = common .. "cloth_2.ogg", t = 30 / 30, c = ca },
             { s = path .. "boxremove.ogg", t = 45 / 30, c = ca },
             { s = common .. "cloth_3.ogg", t = 50 / 30, c = ca },
-            { s = path .. "boxinsert.ogg", t = 70 / 30, c = ca },
+            { s = path .. "boxstruggle.ogg", t = 70 / 30, c = ca },
+            { s = path .. "boxinsert.ogg", t = 76 / 30, c = ca },
             { s = common .. "cloth_1.ogg", t = 85 / 30, c = ca },
             { s = path .. "belt2.ogg", t =  90 / 30, c = ca },
+            { s = path .. "beltadjust.ogg", t =  91 / 30, c = ca },
             { s = path .. "lidclose.ogg", t = 105 / 30, c = ca },
             { s = common .. "cloth_2.ogg", t = 110 / 30, c = ca },
+            { s = path .. "grab.ogg", t = 130 / 30, c = ca, v = 0.25 },
             { s = common .. "shoulder.ogg", t = 135 / 30, c = ca },
         },
     },
@@ -343,10 +387,13 @@ SWEP.Animations = {
             { s = common .. "cloth_2.ogg", t = 40 / 30, c = ca },
             { s = path .. "boxremove.ogg", t = 65 / 30, c = ca },
             { s = common .. "cloth_3.ogg", t = 80 / 30, c = ca },
-            { s = path .. "boxinsert.ogg", t = 95 / 30, c = ca },
-            { s = path .. "belt2.ogg", t =  115 / 30, c = ca },
+            { s = path .. "boxstruggle.ogg", t = 94 / 30, c = ca },
+            { s = path .. "boxinsert.ogg", t = 100 / 30, c = ca },
+            { s = path .. "belt2.ogg", t =  110 / 30, c = ca },
+            { s = path .. "beltadjust.ogg", t =  111 / 30, c = ca },
             { s = common .. "cloth_2.ogg", t = 125 / 30, c = ca },
-            { s = path .. "lidclose.ogg", t = 125 / 30, c = ca },
+            { s = path .. "lidclose.ogg", t = 125 / 30, c = ca, v = 1 },
+            { s = path .. "grab.ogg", t = 150 / 30, c = ca, v = 0.25 },
             { s = common .. "shoulder.ogg", t = 155 / 30, c = ca },
         },
     },

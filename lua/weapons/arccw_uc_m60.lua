@@ -19,9 +19,10 @@ SWEP.Slot = 2
 
 SWEP.UseHands = true
 
-SWEP.ViewModel = "models/weapons/arccw_go/v_mach_m249para.mdl"
-SWEP.WorldModel = "models/weapons/arccw_go/v_mach_m249para.mdl"
-SWEP.ViewModelFOV = 60
+SWEP.ViewModel = "models/weapons/arccw/c_lowpolym249.mdl"
+SWEP.WorldModel = "models/weapons/w_rif_m4a1.mdl"
+SWEP.ViewModelFOV = 85
+SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 
 SWEP.DefaultBodygroups = "0000000000"
 
@@ -73,13 +74,27 @@ SWEP.ShootPitch = 100 -- pitch of shoot sound
 local path = ")^/weapons/arccw_ue/m60/"
 local common = ")^/arccw_uc/common/"
 
-SWEP.ShootSound = {"weapons/arccw_ue/m60/fire_auto_1.ogg", "weapons/arccw_ue/m60/fire_auto_2.ogg", "weapons/arccw_ue/m60/fire_auto_3.ogg", "weapons/arccw_ue/m60/fire_auto_4.ogg", "weapons/arccw_ue/m60/fire_auto_5.ogg", }
-SWEP.ShootSoundSilenced = "arccw_go/m4a1/m4a1_silencer_01.wav"
+SWEP.ShootSound = {
+    path .. "fire-01.ogg",
+    path .. "fire-02.ogg",
+    path .. "fire-03.ogg",
+    path .. "fire-04.ogg",
+    path .. "fire-05.ogg",
+    path .. "fire-06.ogg"
+}
+SWEP.ShootSoundSilenced = path .. "fire_supp.ogg"
 SWEP.DistantShootSound = nil
+SWEP.DistantShootSoundSilenced = common .. "sup_tail.ogg"
+SWEP.ShootDrySound = path .. "dryfire.ogg"
 
 SWEP.DistantShootSoundOutdoors = {
-    path .. "fire_dist.ogg"
- } -- Temp
+    path .. "fire-dist-01.ogg",
+    path .. "fire-dist-02.ogg",
+    path .. "fire-dist-03.ogg",
+    path .. "fire-dist-04.ogg",
+    path .. "fire-dist-05.ogg",
+    path .. "fire-dist-06.ogg"
+}
 SWEP.DistantShootSoundIndoors = {
     common .. "fire-dist-int-rifle-01.ogg",
     common .. "fire-dist-int-rifle-02.ogg",
@@ -113,11 +128,10 @@ SWEP.SightTime = 0.425
 SWEP.ShootSpeedMult = 0.5
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-7.835, -8.573, 1.62),
-    Ang = Angle(-0.5, -0.36, -1.5),
-    Magnification = 1.1,
-    SwitchToSound = "", -- sound that plays when switching to this sight
-    CrosshairInSights = false
+    Pos = Vector(-3.445, 0, 2),
+    Ang = Angle(0.1, 0, -2),
+    Magnification = 1,
+    SwitchToSound = "",
 }
 
 SWEP.HoldtypeHolstered = "passive"
@@ -126,7 +140,7 @@ SWEP.HoldtypeSights = "rpg"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 
-SWEP.ActivePos = Vector(-1, 2, -1)
+SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.CrouchPos = Vector(-4, 0, -1)
@@ -211,7 +225,6 @@ SWEP.AttachmentElements = {
     },
 }
 
-SWEP.ExtraSightDist = 10
 SWEP.GuaranteeLaser = true
 
 SWEP.WorldModelOffset = {
@@ -329,77 +342,211 @@ SWEP.Attachments = {
     },
 }
 
-SWEP.BulletBones = {
-    [1] = "v_weapon.bullet12",
-    [2] = "v_weapon.bullet11",
-    [3] = "v_weapon.bullet10",
-    [4] = "v_weapon.bullet09",
-    [5] = "v_weapon.bullet08",
-    [6] = "v_weapon.bullet07",
-    [7] = "v_weapon.bullet06",
-    [8] = "v_weapon.bullet05",
-    [9] = "v_weapon.bullet04",
-    [10] = "v_weapon.bullet03",
-    [11] = "v_weapon.bullet02",
-    [12] = "v_weapon.bullet01",
-}
-
-SWEP.CaseBones = {}
-
-function SWEP:Hook_TranslateAnimation(anim)
-    if anim == "fire_iron" then
-        if self:GetBuff_Override("NoStock") then return "fire" end
-    elseif anim == "fire_iron_empty" then
-        if self:GetBuff_Override("NoStock") then return "fire_empty" end
-    end
+SWEP.Hook_Think = function(wep)
+    local vm = wep:GetOwner():GetViewModel()
+    vm:SetPoseParameter( "sights", Lerp(wep:GetSightDelta(), 1, 0) )
 end
+
+-- Attachments --
+
+SWEP.CamAttachment = 3
+
+SWEP.RejectAttachments = {
+  ["lpak_polymer"] = true,
+}
 
 SWEP.Animations = {
     ["idle"] = {
-        Source = "idle"
+        Source = "idle",
+        Framerate = 60,
+        Time = 330 / 60,
+    },
+    ["idle_empty"] = {
+        Source = "idle_empty",
+        Framerate = 60,
+        Time = 330 / 60,
+    },
+    ["ready"] = {
+        Source = "idle",
+        Framerate = 60,
+        Time = 68 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKEaseOut = 0.3,
+        LHIKOut = 0.6,
+        SoundTable = {
+            --{ s = path .. "lowpolyfal_readydraw.ogg", t = 1 / 30, c = ca },
+        },
     },
     ["draw"] = {
         Source = "draw",
+        Framerate = 60,
     },
-    ["ready"] = {
-        Source = "ready",
+    ["trigger"] = {
+        Source = "idle",
+        Time = 0.075,
+        SoundTable = {
+            {s = path .. "prefire.ogg",         t = 0, c = CHAN_WEAPON, v = 0.5},
+        },
     },
-    ["fix"] = {
-        Source = "fix",
+    ["trigger_iron"] = {
+        Source = "idle",
+        Time = 0.075,
+        SoundTable = {
+            {s = path .. "prefire.ogg",         t = 0, c = CHAN_WEAPON},
+        },
     },
     ["fire"] = {
-        Source = {"shoot1", "shoot2"},
-        Time = 0.5,
-        ShellEjectAt = 0,
+        Source = "fire",
+        Framerate = 60,
+        Time = 43 / 60,
+        ShellEjectAt = 0.01,
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
     },
     ["fire_iron"] = {
-        Source = "shoot_iron",
-        Time = 0.5,
-        ShellEjectAt = 0,
+        Source = "fire",
+        Framerate = 60,
+        Time = 43 / 60,
+        ShellEjectAt = 0.01,
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }},
     },
+    ["fire_empty"] = {
+        Source = "fire_empty",
+        Framerate = 60,
+        Time = 43 / 60,
+        ShellEjectAt = 0.01,
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
+    },
+    ["fire_iron_empty"] = {
+        Source = "fire_empty",
+        Framerate = 60,
+        Time = 43 / 60,
+        ShellEjectAt = 0.01,
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }},
+    },
+
+    -- 100-R Reloads --
+
     ["reload"] = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        FrameRate = 30,
+        MinProgress = 1,
+        Time = 298 / 60,
+        Framerate = 60,
+        LastClip1OutTime = 2.4,
         LHIK = true,
-        LHIKIn = 0.7,
-        LHIKOut = 0.7,
-        LastClip1OutTime = 2,
+        LHIKIn = 0.2,
+        LHIKEaseIn = 0.2,
+        LHIKEaseOut = 0.2,
+        LHIKOut = 0.62,
+        SoundTable = {
+            { s = common .. "cloth_4.ogg", t = 4 / 30, c = ca },
+            { s = path .. "lidopen.ogg", t = 10 / 30, c = ca },
+            { s = path .. "belt1.ogg", t =  25 / 30, c = ca },
+            { s = common .. "cloth_2.ogg", t = 30 / 30, c = ca },
+            { s = path .. "boxremove.ogg", t = 35 / 30, c = ca },
+            { s = common .. "cloth_3.ogg", t = 50 / 30, c = ca },
+            { s = path .. "boxinsert.ogg", t = 68 / 30, c = ca },
+            { s = common .. "cloth_1.ogg", t = 85 / 30, c = ca },
+            { s = path .. "belt2.ogg", t =  90 / 30, c = ca },
+            { s = common .. "cloth_2.ogg", t = 110 / 30, c = ca },
+            { s = path .. "lidclose.ogg", t = 115 / 30, c = ca },
+            { s = path .. "grab.ogg", t = 130 / 30, c = ca, v = 0.25 },
+            { s = common .. "shoulder.ogg", t = 135 / 30, c = ca },
+        },
     },
     ["reload_empty"] = {
         Source = "reload_empty",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        FrameRate = 30,
+        Framerate = 60,
+        Time = 344 / 60,
+        LastClip1OutTime = 3,
         LHIK = true,
-        LHIKIn = 0.7,
-        LHIKOut = 0.8,
-        LastClip1OutTime = 2,
-    },
-    ["trigger"] = {
-        Source = "idle",
-        Time = 0.1,
+        LHIKIn = 2.2,
+        LHIKEaseIn = 0.1,
+        LHIKEaseOut = 0.15,
+        LHIKOut = 0.7,
         SoundTable = {
-            {s = "weapons/arccw_ue/m60/bolt_forward.ogg",         t = 0, c = ci},
+            { s = common .. "cloth_4.ogg", t = 4 / 30, c = ca },
+            { s = path .. "chback.ogg", t = 15 / 30, c = ca },
+            { s = path .. "chforward.ogg", t = 25 / 30, c = ca },
+            { s = common .. "cloth_1.ogg", t = 26 / 30, c = ca },
+            { s = path .. "lidopen.ogg", t = 39 / 30, c = ca },
+            { s = common .. "cloth_2.ogg", t = 40 / 30, c = ca },
+            { s = path .. "boxremove.ogg", t = 55 / 30, c = ca },
+            { s = common .. "cloth_3.ogg", t = 80 / 30, c = ca },
+            { s = path .. "boxinsert.ogg", t = 90 / 30, c = ca },
+            { s = path .. "belt2.ogg", t =  111 / 30, c = ca },
+            { s = common .. "cloth_2.ogg", t = 125 / 30, c = ca },
+            { s = path .. "lidclose.ogg", t = 140 / 30, c = ca, v = 1 },
+            { s = path .. "grab.ogg", t = 150 / 30, c = ca, v = 0.25 },
+            { s = common .. "shoulder.ogg", t = 155 / 30, c = ca },
+        },
+    },
+    
+    -- Inspecc --
+
+    ["enter_inspect"] = {
+        Source = "enter_inspect",
+        time = 70 / 60,
+        Framerate = 60,
+        LHIK = true,
+        LHIKIn = 0.3,
+        LHIKOut = 0,
+        SoundTable = {
+            { s = path .. "lowpolyfal_cloth2.ogg", t = 0 / 30, c = ca },
+        },
+    },
+    ["idle_inspect"] = {
+        Source = "idle_inspect",
+        time = 120 / 60,
+        Framerate = 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0,
+    },
+    ["exit_inspect"] = {
+        Source = "exit_inspect",
+        time = 143 / 60,
+        Framerate = 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKEaseOut = 0.3,
+        LHIKOut = 0.84,
+        SoundTable = {
+            { s = path .. "lowpolyfal_cloth1.ogg", t = 2 / 30, c = ca },
+        },
+    },
+
+    ["enter_inspect_empty"] = {
+        Source = "enter_inspect_empty",
+        time = 70 / 60,
+        Framerate = 60,
+        LHIK = true,
+        LHIKIn = 0.1,
+        LHIKOut = 0,
+        SoundTable = {
+            { s = path .. "lowpolyfal_cloth2.ogg", t = 0 / 30, c = ca },
+        },
+    },
+    ["idle_inspect_empty"] = {
+        Source = "idle_inspect_empty",
+        time = 120 / 60,
+        Framerate = 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0,
+    },
+    ["exit_inspect_empty"] = {
+        Source = "exit_inspect_empty",
+        time = 143 / 60,
+        Framerate = 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKEaseOut = 0.3,
+        LHIKOut = 0.84,
+        SoundTable = {
+            { s = path .. "lowpolyfal_cloth1.ogg", t = 2 / 30, c = ca },
         },
     },
 }
