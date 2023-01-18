@@ -20,7 +20,7 @@ SWEP.Slot = 3
 
 SWEP.UseHands = true
 
-SWEP.ViewModel = "models/weapons/arccw/mifl/fas2/c_m82.mdl"
+SWEP.ViewModel = "models/weapons/arccw/c_lowpolym249.mdl"
 SWEP.WorldModel = "models/weapons/arccw/mifl/fas2/c_m82.mdl"
 SWEP.ViewModelFOV = 57
 SWEP.MirrorVMWM = true
@@ -124,9 +124,9 @@ SWEP.DistantShootSoundIndoorsVolume = 1
 SWEP.Hook_AddShootSound = ArcCW.UC.InnyOuty
 
 SWEP.MuzzleEffect = "muzzleflash_1"
-SWEP.ShellModel = "models/shells/shell_556.mdl"
-SWEP.ShellPitch = 70
-SWEP.ShellScale = 2.7
+SWEP.ShellModel = "models/weapons/arccw/uc_shells/556x45.mdl"
+SWEP.ShellPitch = 65
+SWEP.ShellScale = 1.4
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on

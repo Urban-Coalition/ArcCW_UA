@@ -114,9 +114,9 @@ SWEP.DistantShootSoundIndoorsVolume = 1
 SWEP.Hook_AddShootSound = ArcCW.UC.InnyOuty
 
 SWEP.MuzzleEffect = "muzzleflash_minimi"
-SWEP.ShellModel = "models/shells/shell_556.mdl"
-SWEP.ShellPitch = 65
-SWEP.ShellScale = 1.25
+SWEP.ShellModel = "models/weapons/arccw/uc_shells/556x45.mdl"
+SWEP.ShellScale = 1.145
+SWEP.ShellPitch = 90
 SWEP.ShellRotateAngle = Angle(0, 180, 0)
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
