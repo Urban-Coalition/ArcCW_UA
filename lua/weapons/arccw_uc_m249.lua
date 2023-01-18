@@ -25,7 +25,7 @@ SWEP.PrintName = "XM422"
 
 -- True name --
 
-SWEP.TrueName = "Minimi"
+SWEP.TrueName = "M249 SAW"
 
 -- Trivia --
 
