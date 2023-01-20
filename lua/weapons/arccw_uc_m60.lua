@@ -5,7 +5,7 @@ SWEP.UC_CategoryPack = "4Urban Anarchy"
 SWEP.AdminOnly = false
 
 SWEP.PrintName = "M60"
-SWEP.Trivia_Class = "General Purpose Machine Gun"
+SWEP.Trivia_Class = "Machine Gun"
 SWEP.Trivia_Desc = [[Classic machine gun with a beefy profile and a beefy cartridge. Despite glaring reliability issues, it is remembered fondly as an icon of the Vietnam War. Troops have affectionately nicknamed it "the Pig" for its bulkiness and demanding ammo consumption.
 
 As one of the heaviest infantry weapons available, it handles the round's recoil quite well, especially when mounted.]]

@@ -28,7 +28,7 @@ SWEP.TrueName = "M249 SAW"
 
 -- Trivia --
 
-SWEP.Trivia_Class = "Light Machine Gun"
+SWEP.Trivia_Class = "Machine Gun"
 SWEP.Trivia_Desc = "Compact, fast-firing light machine gun, adopted by the US Army in search of a more soldier-friendly alternative to the M60. Its huge ammo box can carry an unprecedented quantity of rounds, which are dispensed downrange at a rate that will force the enemy's heads to stay down. In emergencies, it can also accept STANAG magazines."
 SWEP.Trivia_Manufacturer = "Not FN Herstal"
 SWEP.Trivia_Calibre = "5.56x45mm NATO"
