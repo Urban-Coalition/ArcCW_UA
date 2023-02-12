@@ -35,7 +35,7 @@ SWEP.ShootEntity = nil -- entity to fire, if any
 SWEP.ChamberSize = 0 -- how many rounds can be chambered.
 SWEP.Primary.ClipSize = 100 -- DefaultClip is automatically set.
 
-SWEP.PhysBulletMuzzleVelocity = 650
+SWEP.PhysBulletMuzzleVelocity = 853
 
 SWEP.Recoil = 0.245
 SWEP.RecoilSide = 0.245

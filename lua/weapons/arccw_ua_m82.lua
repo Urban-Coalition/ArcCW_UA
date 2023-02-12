@@ -16,6 +16,10 @@ SWEP.Trivia_Mechanism = "Recoil-Operated Rotating Bolt"
 SWEP.Trivia_Country = "USA"
 SWEP.Trivia_Year = 1980
 
+if GetConVar("arccw_truenames"):GetBool() then
+    SWEP.PrintName = SWEP.TrueName
+end
+
 SWEP.Slot = 3
 
 SWEP.UseHands = true
@@ -38,7 +42,7 @@ SWEP.Range = 1800 -- in METRES
 SWEP.Penetration = ArcCW.UC.StdDmg["50bmg"].pen
 SWEP.DamageType = DMG_AIRBOAT + DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
-SWEP.MuzzleVelocity = 2800 -- projectile or phys bullet muzzle velocity
+SWEP.PhysBulletMuzzleVelocity = 853 -- projectile or phys bullet muzzle velocity
 -- IN M/S
 
 SWEP.TracerNum = 1 -- tracer every X

@@ -8,11 +8,15 @@ SWEP.PrintName = "GAUSS-17/A"
 SWEP.TrueName = "M134 Minigun"
 SWEP.Trivia_Class = "Machine Gun"
 SWEP.Trivia_Desc = [["And the Lord said, 'I will blot out man whom I have created from the face of the land, from man to animals to creeping things and to birds of the sky; for I am sorry that I have made them.'" -Genesis 6:7]]
-SWEP.Trivia_Manufacturer = "U.S. Ordnance"
+SWEP.Trivia_Manufacturer = "General Electric"
 SWEP.Trivia_Calibre = "7.62x51mm NATO"
 SWEP.Trivia_Mechanism = "Electric Rotary Breech"
 SWEP.Trivia_Country = "United States"
 SWEP.Trivia_Year = 1960
+
+if GetConVar("arccw_truenames"):GetBool() then
+    SWEP.PrintName = SWEP.TrueName -- I now understand the reasoning for this statement
+end
 
 SWEP.Slot = 3
 

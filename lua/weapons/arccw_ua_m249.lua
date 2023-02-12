@@ -36,6 +36,10 @@ SWEP.Trivia_Mechanism = "Gas-Operated Open Bolt"
 SWEP.Trivia_Country = "Belgium"
 SWEP.Trivia_Year = 1977
 
+if GetConVar("arccw_truenames"):GetBool() then
+    SWEP.PrintName = SWEP.TrueName
+end
+
 -- Weapon slot --
 
 SWEP.Slot = 2
@@ -62,7 +66,7 @@ SWEP.Range = 150
 SWEP.Penetration = ArcCW.UC.StdDmg["556"].pen
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil
-SWEP.MuzzleVelocity = 823 
+SWEP.PhysBulletMuzzleVelocity = 915
 
 -- Mag size --
 
