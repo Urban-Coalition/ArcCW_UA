@@ -196,7 +196,13 @@ SWEP.AttachmentElements = {
         VMBodygroups = {
             {ind = 2, bg = 1}
         }
-    }   
+    },
+    ["m82_tlp"] = {
+        AttPosMods = {[1] = {
+            vpos = Vector(0, 13, 3.1),
+            vang = Angle(180, -90, 0),
+        }}
+    }
 }
 
 SWEP.ExtraSightDist = 3
