@@ -1,0 +1,20 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models\weapons\arccw\ua_m82/M82_B"
+	"$bumpmap" "models\weapons\arccw\ua_m82/M82_N"
+
+	"$color2" "[1 1 1]"
+
+	"$phong" 		"1"
+	"$phongexponenttexture" "models\weapons\arccw\ua_m82\M82_E"
+	"$phongboost" "10"
+	"$phongalbedotint" 			"1"
+	"$phongfresnelranges" "[0.5 1.5 3.0]"
+
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[.005 .005 .015]"
+
+	"$normalmapalphaenvmapmask" 	"0"
+	"$blendTintByBaseAlpha" "1"
+	"$nocull" "1"
+}
