@@ -175,8 +175,8 @@ SWEP.HoldtypeSights = "rpg"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_RPG
 
-SWEP.ActivePos = Vector(1, 2, 1)
-SWEP.ActiveAng = Angle(0, 0, 0)
+SWEP.ActivePos = Vector(1, 3, 1)
+SWEP.ActiveAng = Angle(1, 1, -2)
 
 SWEP.HolsterPos = Vector(1, 0, 2)
 SWEP.HolsterAng = Angle(-5, 5, 0)
@@ -296,16 +296,10 @@ SWEP.Hook_ModifyBodygroups = function(wep, data)
     if papcamo then return vm:SetSkin(3) end
 end
 
-function SWEP:SelectReloadAnimation()
-    local ret
-    local inbipod = (self:InBipod()) and "_bipod" or ""
-    local nomen = self:GetBuff_Override("Override_FAS2NomenBackup") and "_nomen" or ""
-    local empty = (self:Clip1() == 0) and "_empty" or ""
-
-    ret = "reload" .. inbipod .. nomen .. empty
-
-    return ret
-end
+local rottle = {common .. "cloth_1.ogg", common .. "cloth_2.ogg", common .. "cloth_3.ogg", common .. "cloth_4.ogg", common .. "cloth_5.ogg", common .. "cloth_6.ogg", common .. "rattle.ogg"}
+local rutle = {common .. "movement-smg-03.ogg",common .. "movement-smg-04.ogg"}
+local mech = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}
+local rutle = {common .. "movement-sniper-01.ogg", common .. "movement-sniper-02.ogg", common .. "movement-sniper-03.ogg", common .. "movement-sniper-04.ogg"}
 
 SWEP.Animations = {
     ["draw"] = {
@@ -351,27 +345,43 @@ SWEP.Animations = {
         ShellEjectAt = 0,
         SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
     },
+    ["fire_bipod"] = {
+        Source = "bipod_fire",
+        Time = 31 / 35,
+        ShellEjectAt = 0,
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.15 }},
+    },
     ["fire_iron"] = {
         Source = "fire",
         ShellEjectAt = 0,
         SoundTable = {
             {s = common .. "common_mech_heavy.ogg", t = 0, v = 0.4},
             {s = common .. "common_mech_light.ogg", t = 0},
-            { s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }
+            { s = mech, t = 0 }
         },
     },
 
     ["reload"] = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        --[[SoundTable = {
-            {s = common .. "cloth_4.ogg", t = 0},
+        FrameRate = 30,
+        MinProgress = 3.8,
+        SoundTable = {
+            {s = rottle, t = 0},
+            {s = rutle, t = 0.1},
             {s = path .. "magrel.ogg", t = 1.1},
-            {s = path .. "magout.ogg", t = 1.3},
-            {s = common .. "cloth_2.ogg", t = 1.6},
-            {s = path .. "magin.ogg", t = 2.6},
-            {s = common .. "shoulder.ogg", t = 3.8},
-        },]]
+            {s = path .. "magtouch.ogg", t = 1.6},
+            {s = path .. "magout.ogg", t = 1.7},
+            {s = rottle, t = 1.65},
+            {s = rutle, t = 1.68},
+            {s = common .. "magpouch.ogg", t = 2.7, v = 0.2},
+            {s = path .. "struggle.ogg", t = 3.1},
+            {s = path .. "magin.ogg", t = 3.55},
+            {s = path .. "grab.ogg", t = 3.5},
+            {s = rottle, t = 3.7},
+            {s = rutle, t = 3.75},
+            {s = common .. "shoulder.ogg", t = 4.4, v = 0.6},
+        },
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.5,
@@ -379,18 +389,29 @@ SWEP.Animations = {
     ["reload_empty"] = {
         Source = "reload_empty",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        --[[SoundTable = {
-            {s = common .. "cloth_4.ogg", t = 0},
-            {s = path .. "magrel.ogg", t = 1.1},
-            {s = path .. "magout.ogg", t = 1.3},
-            {s = common .. "cloth_2.ogg", t = 1.6},
-            {s = path .. "magin.ogg", t = 2.6},
-            {s = common .. "cloth_1.ogg", t = 2.0},
-            {s = path .. "chback.ogg", t = 4.5},
-            {s = common .. "cloth_3.ogg", t = 4.6},
-            {s = path .. "chamber.ogg", t = 5.0},
-            {s = common .. "shoulder.ogg", t = 5.8},
-        },]]
+        FrameRate = 30,
+        MinProgress = 4.75,
+        SoundTable = {
+            {s = rottle, t = 0},
+            {s = rutle, t = 0.1},
+            {s = common .. "magpouch.ogg", t = 0.9, v = 0.2},
+            {s = path .. "magtouch.ogg", t = 1.5},
+            {s = path .. "magrel.ogg", t = 1.66},
+            {s = path .. "magout.ogg", t = 1.7},
+            {s = rottle, t = 1.65},
+            {s = rutle, t = 1.68},
+            {s = path .. "struggle.ogg", t = 2.3},
+            {s = path .. "magin.ogg", t = 2.85},
+            {s = path .. "grab.ogg", t = 2.8},
+            {s = rottle, t = 3.0},
+            {s = rutle, t = 3.05},
+            {s = path .. "chstart.ogg", t = 4.0},
+            {s = path .. "chback.ogg", t = 4.1},
+            {s = path .. "chamber.ogg", t = 4.6},
+            {s = rottle, t = 4.7},
+            {s = rutle, t = 4.75},
+            {s = common .. "shoulder.ogg", t = 5.4, v = 0.6},
+        },
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.5,
