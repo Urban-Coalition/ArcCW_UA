@@ -112,12 +112,12 @@ SWEP.DistantShootSoundOutdoors = {
     tail .. "fire-dist-50bmg-rif-ext-06.ogg"
 }
 SWEP.DistantShootSoundIndoors = {
-    common .. "fire-dist-int-shotgun-01.ogg",
-    common .. "fire-dist-int-shotgun-02.ogg",
-    common .. "fire-dist-int-shotgun-03.ogg",
-    common .. "fire-dist-int-shotgun-04.ogg",
-    common .. "fire-dist-int-shotgun-05.ogg",
-    common .. "fire-dist-int-shotgun-06.ogg"
+    tail .. "fire-dist-50bmg-rif-int-01.ogg",
+    tail .. "fire-dist-50bmg-rif-int-02.ogg",
+    tail .. "fire-dist-50bmg-rif-int-03.ogg",
+    tail .. "fire-dist-50bmg-rif-int-04.ogg",
+    tail .. "fire-dist-50bmg-rif-int-05.ogg",
+    tail .. "fire-dist-50bmg-rif-int-06.ogg"
 }
 SWEP.DistantShootSoundOutdoorsSilenced = {
     common .. "sup-tail-01.ogg",
