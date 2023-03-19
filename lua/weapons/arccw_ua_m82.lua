@@ -34,7 +34,7 @@ SWEP.WorldModelOffset = {
     bone    =    "ValveBiped.Bip01_R_Hand",
 }
 
-SWEP.DefaultBodygroups = "00010000000"
+SWEP.DefaultBodygroups = "00000000000"
 
 SWEP.Damage = ArcCW.UC.StdDmg["50bmg"].max
 SWEP.DamageMin = ArcCW.UC.StdDmg["50bmg"].min -- damage done at maximum range
@@ -164,7 +164,7 @@ SWEP.ProceduralIronFire = false
 SWEP.CaseBones = {}
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-4.249, -5, 2.39),
+    Pos = Vector(-3.3, 4, 0.55),
     Ang = Angle(0, 0, 0),
     Magnification = 1.05,
 }
@@ -192,30 +192,11 @@ SWEP.BarrelLength = 60
 SWEP.ShellRotateAngle = Angle(0, 90, 0)
 
 SWEP.AttachmentElements = {
-    ["rail"] = {
+    ["m82_lowersights"] = {
         VMBodygroups = {
-            {ind = 2, bg = 1},
-        },
-    },
-    ["bo1_bipod"] = {
-        VMBodygroups = {
-            {ind = 3, bg = 2}
-        },
-    },
-    ["muzzle"] = {
-        VMBodygroups = {
-            {ind = 4, bg = 1}
-        },
-    },
-    ["ub"] = {
-        VMBodygroups = {
-            {ind = 3, bg = 0}
-        },
-    },
-    ["ammo_papunch"] = {
-        NamePriority = 10,
-        NameChange = "Macro Annihilator",
-    },
+            {ind = 2, bg = 1}
+        }
+    }   
 }
 
 SWEP.ExtraSightDist = 3
@@ -227,23 +208,27 @@ SWEP.Attachments = {
     {
         PrintName = "Optic", -- print name
         DefaultAttName = "Iron Sights",
-        Slot = {"optic", "optic_lp", "optic_fas1_m82"}, -- what kind of attachments can fit here, can be string or table
-        Bone = "M82_Body", -- relevant bone any attachments will be mostly referring to
+        Slot = {"optic", "optic_lp", "optic_sniper", "optic_fas1_m82"}, -- what kind of attachments can fit here, can be string or table
+        Bone = "b_wpn", -- relevant bone any attachments will be mostly referring to
         Offset = {
-            vpos = Vector(0, -2, 3.9), -- offset that the attachment will be relative to the bone
+            vpos = Vector(0, -1, 3.3), -- offset that the attachment will be relative to the bone
             vang = Angle(90, -90, -90),
             wpos = Vector(9, 0.739, -6.801),
             wang = Angle(-10, 0, 180)
         },
+        SlideAmount = {
+            vmin = Vector(0,0,3.3),
+            vmax = Vector(0,-2,3.3),
+        },
         CorrectiveAng = Angle(180, 0, 0),
-        InstalledEles = {"noch"},
-        ExtraSightDist = 3
+        InstalledEles = {"m82_lowersights"},
+        ExtraSightDist = 3,
     },
     {
         PrintName = "Barrel",
         DefaultAttName = "29\" Standard Barrel",
         Slot = "mifl_fas2_m82_hg",
-        Bone = "M82_Body",
+        Bone = "b_wpn",
         Offset = {
             vpos = Vector(0.5, 6, -1),
             vang = Angle(90, -90, -90),
@@ -252,24 +237,17 @@ SWEP.Attachments = {
     {
         PrintName = "Underbarrel",
         Slot = {"foregrip", "ubgl"},
-        Bone = "M82_Body",
+        Bone = "b_wpn",
         Offset = {
+            vpos = Vector(0, 10, 0.6),
             vang = Angle(90, -90, -90),
-            wpos = Vector(14.329, 0.602, -4.453),
-            wang = Angle(-10.216, 0, 180)
-        },
-        SlideAmount = {
-            vmin = Vector(0, 7, 0),
-            vmax = Vector(0, 15, 0),
-            wmin = Vector(19, 0.832, -6),
-            wmax = Vector(19, 0.832, -6),
         },
         ExcludeFlags = {"mifl_fas2_m82_obrez"},			
     },
     {
         PrintName = "Tactical",
         Slot = "tac",
-        Bone = "M82_Body",
+        Bone = "b_wpn",
         Offset = {
             vpos = Vector(-0.8, 2, -1.2), -- offset that the attachment will be relative to the bone
             vang = Angle(180, -90, 90),
@@ -302,7 +280,7 @@ SWEP.Attachments = {
         PrintName = "Charm",
         DefaultAttName = "None",
         Slot = {"charm"},
-        Bone = "M82_Body",
+        Bone = "b_wpn",
         Offset = {
             vpos = Vector(1.5, -3, 0),
             vang = Angle(90, -90, -90),
@@ -331,37 +309,50 @@ end
 
 SWEP.Animations = {
     ["draw"] = {
-        Source = "deploy",
-        MinProgress = 30 / 35,
-        LHIK = false,
+        Source = "draw",
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0.25,
+    },
+    ["draw_empty"] = {
+        Source = "draw_empty",
+        LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0.25,
     },
     ["ready"] = {
-        Source = "deploy_first",
-        LHIK = false,
+        Source = "equip",
+        LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0.25,
     },
     ["idle"] = {
         Source = "idle",
     },
-    ["idle_bipod"] = {
-        Source = "bipod_idle",
+    ["idle_empty"] = {
+        Source = "idle_empty",
     },
+    ["holster"] = {
+        Source = "holster",
+        LHIK = true,
+        LHIKEaseOut = 0.2,
+        LHIKIn = 0.6,
+        LHIKOut = 0.3,
+    },
+    ["holster_empty"] = {
+        Source = "holster_empty",
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0.25,
+    },
+
     ["fire"] = {
         Source = "fire",
         ShellEjectAt = 0,
         SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
     },
-    ["fire_bipod"] = {
-        Source = "bipod_fire",
-        Time = 31 / 35,
-        ShellEjectAt = 0,
-        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.15 }},
-    },
     ["fire_iron"] = {
-        Source = "iron",
+        Source = "fire",
         ShellEjectAt = 0,
         SoundTable = {
             {s = common .. "common_mech_heavy.ogg", t = 0, v = 0.4},
@@ -369,10 +360,10 @@ SWEP.Animations = {
             { s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }
         },
     },
+
     ["reload"] = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        FrameRate = 30,
         --[[SoundTable = {
             {s = common .. "cloth_4.ogg", t = 0},
             {s = path .. "magrel.ogg", t = 1.1},
@@ -386,9 +377,8 @@ SWEP.Animations = {
         LHIKOut = 0.5,
     },
     ["reload_empty"] = {
-        Source = "reload_empty_compact",
+        Source = "reload_empty",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        FrameRate = 30,
         --[[SoundTable = {
             {s = common .. "cloth_4.ogg", t = 0},
             {s = path .. "magrel.ogg", t = 1.1},
@@ -405,68 +395,10 @@ SWEP.Animations = {
         LHIKIn = 0.5,
         LHIKOut = 0.5,
     },
-    ["reload_nomen"] = {
-        Source = "reload_nomen",
-        Time = 117 / 35,
-        MinProgress = 2,
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-    },
-    ["reload_nomen_empty"] = {
-        Source = "reload_empty_nomen",
-        MinProgress = 2,
-        Time = 150 / 35,
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-    },
-    ["enter_bipod"] = {
-        Source = "bipod_dn",
-        Time = 110 / 35,
-        LHIK = true,
-        LHIKIn = 0.2,
-        LHIKOut = 0,
-		Mult = 0.7,
-    },
-    ["exit_bipod"] = {
-        Source = "bipod_up",
-        Time = 102 / 35,
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.4,
-		Mult = 0.7,		
-    },
-    ["reload_bipod"] = {
-        Source = "bipod_reload",
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        MinProgress = 2.5,
-        LastClip1OutTime = 3,
-        LHIK = true,
+
+    ["fix"] = {
+        Source = "unjam",
         LHIKIn = 0.5,
-        LHIKOut = 0.5
-    },
-    ["reload_bipod_empty"] = {
-        Source = "bipod_reload_empty",
-        MinProgress = 2.5,
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        LastClip1OutTime = 2,
-        LHIK = true,
-        LHIKIn = 0.5,
-        LHIKOut = 0.5
-    },
-    ["reload_bipod_nomen"] = {
-        Source = "bipod_reload_nomen",
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        MinProgress = 1.5,
-        LastClip1OutTime = 3,
-        LHIK = true,
-        LHIKIn = 0.5,
-        LHIKOut = 0.5
-    },
-    ["reload_bipod_nomen_empty"] = {
-        Source = "bipod_reload_empty_nomen",
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        MinProgress = 1.5,
-        LastClip1OutTime = 2,
-        LHIK = true,
-        LHIKIn = 0.5,
-        LHIKOut = 0.5
-    },
+        LHIKOut = 0.5,
+    }
 }
