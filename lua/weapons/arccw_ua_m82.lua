@@ -7,7 +7,7 @@ SWEP.AdminOnly = false
 SWEP.PrintName = "Fuck-You-In-Particular-inator"
 SWEP.TrueName = "M82A1"
 SWEP.Trivia_Class = "Anti-materiel Rifle"
-SWEP.Trivia_Desc = [[Arguably the most recognizable anti-materiel rifle. As the first shoulder-fired weapon of its caliber, this massive, barely man-portable rifle has been adopted by militaries and outlaws worldwide to help individual marksmen counter heavy targets.
+SWEP.Trivia_Desc = [[Arguably the most recognizable anti-materiel rifle. As the first shoulder-fired weapon in .50 BMG, this massive, barely man-portable rifle has been adopted by militaries and outlaws worldwide to help individual marksmen counter heavy targets.
     
 Chambered for a mounted machine gun cartridge designed to punch holes through cover and armored vehicles. To shoot a man with it might be overkill (or great fun, depending on your tastes).]]
 SWEP.Trivia_Manufacturer = "Barrett Firearms Manufacturing"
@@ -197,12 +197,26 @@ SWEP.AttachmentElements = {
             {ind = 2, bg = 1}
         }
     },
-    ["m82_tlp"] = {
-        AttPosMods = {[1] = {
+
+    ["ua_m82_mag_5"] = {
+        VMBodygroups = {
+            {ind = 1, bg = 1}
+        }
+    },
+    ["ua_m82_charm_tlp"] = {
+        AttPosMods = {[5] = {
             vpos = Vector(0, 13, 3.1),
             vang = Angle(180, -90, 0),
-        }}
-    }
+        }},
+        Override_IronSightStruct = {
+            Pos = Vector(-6, 10, -2),
+            Ang = Angle(0, 0, -30),
+            GlobalPos = false,
+            GlobalAng = true,
+            Magnification = 1,
+            ScrollFunc = ArcCW.SCROLL_NONE
+        },
+    },
 }
 
 SWEP.ExtraSightDist = 3
@@ -241,14 +255,19 @@ SWEP.Attachments = {
         },
     },
     {
+        PrintName = "Magazine",
+        Slot = {"ua_m82_mag"},
+        DefaultAttName = "10-Round Mag",
+        -- DefaultAttIcon = Material("entities/att/ur_ak/magazines/762_30.png", "mips smooth"),
+    },
+    {
         PrintName = "Underbarrel",
         Slot = {"foregrip", "ubgl"},
         Bone = "b_wpn",
         Offset = {
             vpos = Vector(0, 10, 0.6),
             vang = Angle(90, -90, -90),
-        },
-        ExcludeFlags = {"mifl_fas2_m82_obrez"},			
+        },		
     },
     {
         PrintName = "Tactical",
@@ -260,6 +279,7 @@ SWEP.Attachments = {
         },
         ExtraSightDist = 22,
         CorrectivePos = Vector(2, -2, 0),
+        GivesFlags = {"tac"},
     },
     {
         PrintName = "Ammo Type",
@@ -285,7 +305,7 @@ SWEP.Attachments = {
     {
         PrintName = "Charm",
         DefaultAttName = "None",
-        Slot = {"charm"},
+        Slot = {"charm","ua_m82_charm"},
         Bone = "b_wpn",
         Offset = {
             vpos = Vector(1.5, -3, 0),
@@ -388,6 +408,61 @@ SWEP.Animations = {
     },
     ["reload_empty"] = {
         Source = "reload_empty",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        FrameRate = 30,
+        MinProgress = 4.75,
+        SoundTable = {
+            {s = rottle, t = 0},
+            {s = rutle, t = 0.1},
+            {s = common .. "magpouch.ogg", t = 0.9, v = 0.2},
+            {s = path .. "magtouch.ogg", t = 1.5},
+            {s = path .. "magrel.ogg", t = 1.66},
+            {s = path .. "magout.ogg", t = 1.7},
+            {s = rottle, t = 1.65},
+            {s = rutle, t = 1.68},
+            {s = path .. "struggle.ogg", t = 2.3},
+            {s = path .. "magin.ogg", t = 2.85},
+            {s = path .. "grab.ogg", t = 2.8},
+            {s = rottle, t = 3.0},
+            {s = rutle, t = 3.05},
+            {s = path .. "chstart.ogg", t = 3.95},
+            {s = path .. "chback.ogg", t = 4.05},
+            {s = path .. "chamber.ogg", t = 4.6},
+            {s = rottle, t = 5.0},
+            {s = rutle, t = 5.05},
+            {s = common .. "shoulder.ogg", t = 5.4, v = 0.6},
+        },
+        LHIK = true,
+        LHIKIn = 0.5,
+        LHIKOut = 0.5,
+    },
+    ["reload_5"] = {
+        Source = "reload_5",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        FrameRate = 30,
+        MinProgress = 3.8,
+        SoundTable = {
+            {s = rottle, t = 0},
+            {s = rutle, t = 0.1},
+            {s = path .. "magrel.ogg", t = 1.1},
+            {s = path .. "magtouch.ogg", t = 1.6},
+            {s = path .. "magout.ogg", t = 1.7},
+            {s = rottle, t = 1.65},
+            {s = rutle, t = 1.68},
+            {s = common .. "magpouch.ogg", t = 2.7, v = 0.2},
+            {s = path .. "struggle.ogg", t = 3.1},
+            {s = path .. "magin.ogg", t = 3.55},
+            {s = path .. "grab.ogg", t = 3.5},
+            {s = rottle, t = 3.7},
+            {s = rutle, t = 3.75},
+            {s = common .. "shoulder.ogg", t = 4.4, v = 0.6},
+        },
+        LHIK = true,
+        LHIKIn = 0.5,
+        LHIKOut = 0.5,
+    },
+    ["reload_empty_5"] = {
+        Source = "reload_empty_5",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         FrameRate = 30,
         MinProgress = 4.75,
