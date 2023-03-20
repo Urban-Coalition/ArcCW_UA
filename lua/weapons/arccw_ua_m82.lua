@@ -145,6 +145,7 @@ SWEP.DistantShootSoundIndoorsVolume = 1
 SWEP.Hook_AddShootSound = ArcCW.UC.InnyOuty
 
 SWEP.MuzzleEffect = "muzzleflash_1"
+SWEP.ShellEffect = "arccw_uc_shelleffect"
 SWEP.ShellModel = "models/weapons/arccw/uc_shells/556x45.mdl"
 SWEP.ShellPitch = 65
 SWEP.ShellScale = 1.4
