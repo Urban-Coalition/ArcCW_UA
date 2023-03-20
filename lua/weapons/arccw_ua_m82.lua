@@ -327,8 +327,8 @@ SWEP.Hook_ModifyBodygroups = function(wep, data)
 end
 
 local rottle = {common .. "cloth_1.ogg", common .. "cloth_2.ogg", common .. "cloth_3.ogg", common .. "cloth_4.ogg", common .. "cloth_5.ogg", common .. "cloth_6.ogg", common .. "rattle.ogg"}
-local rutle = {common .. "movement-smg-03.ogg",common .. "movement-smg-04.ogg"}
 local mech = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}
+local ratel = {common .. "rattle1.ogg", common .. "rattle2.ogg", common .. "rattle3.ogg"}
 local rutle = {common .. "movement-sniper-01.ogg", common .. "movement-sniper-02.ogg", common .. "movement-sniper-03.ogg", common .. "movement-sniper-04.ogg"}
 
 SWEP.Animations = {
@@ -337,12 +337,12 @@ SWEP.Animations = {
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0.25,
-    },
-    ["draw_empty"] = {
-        Source = "draw_empty",
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.25,
+        SoundTable = {
+            {s = rottle, t = 0},
+            {s = rutle, t = 0.05},
+            {s = rottle, t = 0.7},
+            {s = common .. "shoulder.ogg", t = 1.1, v = 0.5}
+        },
     },
     ["ready"] = {
         Source = "equip",
@@ -362,12 +362,10 @@ SWEP.Animations = {
         LHIKEaseOut = 0.2,
         LHIKIn = 0.6,
         LHIKOut = 0.3,
-    },
-    ["holster_empty"] = {
-        Source = "holster_empty",
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.25,
+        SoundTable = {
+            {s = rottle, t = 0},
+            {s = rutle, t = 0.05},
+        }
     },
 
     ["fire"] = {
