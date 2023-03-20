@@ -29,7 +29,7 @@ SWEP.WorldModel = "models/weapons/arccw/c_ua_m82.mdl"
 SWEP.ViewModelFOV = 57
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
-    pos        =    Vector(-4.5, 4, -7.5),
+    pos        =    Vector(-6.5, 4, -7),
     ang        =    Angle(-6, 0, 180),
     bone    =    "ValveBiped.Bip01_R_Hand",
 }
@@ -312,7 +312,7 @@ SWEP.Attachments = {
         Slot = {"charm","ua_m82_charm"},
         Bone = "b_wpn",
         Offset = {
-            vpos = Vector(1.5, -3, 0),
+            vpos = Vector(0.9, -1.5, 0),
             vang = Angle(90, -90, -90),
         },
         FreeSlot = true,
