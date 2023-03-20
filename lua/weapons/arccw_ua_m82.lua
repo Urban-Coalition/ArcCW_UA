@@ -58,6 +58,7 @@ SWEP.RecoilRise = 2
 SWEP.SpeedMult = 0.7
 SWEP.SightedSpeedMult = 0.35
 SWEP.SightTime = 0.72
+SWEP.Sway = 1.5
 
 SWEP.Delay = 60 / 200 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
