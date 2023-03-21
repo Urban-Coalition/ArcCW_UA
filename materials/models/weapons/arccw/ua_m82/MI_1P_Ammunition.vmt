@@ -3,11 +3,11 @@
 	"$basetexture" "models\weapons\arccw\ua_m82/M82_Bullet_B"
 	"$bumpmap" "models\weapons\arccw\ua_m82/M82_Bullet_N"
 
-	"$color2" "[.65 .65 .65]"
+	"$color2" "[.4 .4 .4]"
 
 	"$phong" 		"1"
-	"$phongexponenttexture" "models\weapons\arccw\ua_m82\M82_Bullet_N"
-	"$phongboost" "1"
+	"$phongexponenttexture" "models\weapons\arccw\ua_m82\M82_Bullet_E"
+	"$phongboost" "2"
 	"$phongalbedotint" 			"1"
 	"$phongfresnelranges" "[0.5 1.5 3.0]"
 
