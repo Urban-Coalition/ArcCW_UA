@@ -331,7 +331,7 @@ local rottle = {common .. "cloth_1.ogg", common .. "cloth_2.ogg", common .. "clo
 local mech = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}
 local ratel = {common .. "rattle1.ogg", common .. "rattle2.ogg", common .. "rattle3.ogg"}
 local rutle = {common .. "movement-sniper-01.ogg", common .. "movement-sniper-02.ogg", common .. "movement-sniper-03.ogg", common .. "movement-sniper-04.ogg"}
-local magdrop = {common .. "rifle_magdrop_1.ogg", common .. "rifle_magdrop_2.ogg", common .. "rifle_magdrop_3.ogg", common .. "rifle_magdrop_4.ogg", common .. "rifle_magdrop_p.ogg"}
+local magdrop = {common .. "rifle_magdrop_1.ogg", common .. "rifle_magdrop_2.ogg", common .. "rifle_magdrop_3.ogg", common .. "rifle_magdrop_4.ogg"}
 
 SWEP.Animations = {
     ["draw"] = {

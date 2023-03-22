@@ -191,12 +191,12 @@ SWEP.DistantShootSoundOutdoors = {
     tail .. "fire-dist-556x45-mg-ext-06.ogg"
 }
 SWEP.DistantShootSoundIndoors = {
-    common .. "fire-dist-int-rifle-01.ogg",
-    common .. "fire-dist-int-rifle-02.ogg",
-    common .. "fire-dist-int-rifle-03.ogg",
-    common .. "fire-dist-int-rifle-04.ogg",
-    common .. "fire-dist-int-rifle-05.ogg",
-    common .. "fire-dist-int-rifle-06.ogg"
+    tail .. "fire-dist-556x45-rif-int-01.ogg",
+    tail .. "fire-dist-556x45-rif-int-02.ogg",
+    tail .. "fire-dist-556x45-rif-int-03.ogg",
+    tail .. "fire-dist-556x45-rif-int-04.ogg",
+    tail .. "fire-dist-556x45-rif-int-05.ogg",
+    tail .. "fire-dist-556x45-rif-int-06.ogg"
 }
 SWEP.DistantShootSoundOutdoorsSilenced = {
     common .. "sup-tail-01.ogg",
@@ -338,7 +338,7 @@ SWEP.Animations = {
         Time = 43 / 60,
         ShellEjectAt = 0.01,
         SoundTable = {
-            {s = common .. "common_mech_light.ogg", t = 0, v = 0.4},
+            {s = common .. "common_mech_light.ogg", t = 0, v = 0.2},
             { s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }
         },
     },
