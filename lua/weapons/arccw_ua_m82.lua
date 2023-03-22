@@ -331,6 +331,7 @@ local rottle = {common .. "cloth_1.ogg", common .. "cloth_2.ogg", common .. "clo
 local mech = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}
 local ratel = {common .. "rattle1.ogg", common .. "rattle2.ogg", common .. "rattle3.ogg"}
 local rutle = {common .. "movement-sniper-01.ogg", common .. "movement-sniper-02.ogg", common .. "movement-sniper-03.ogg", common .. "movement-sniper-04.ogg"}
+local magdrop = {common .. "rifle_magdrop_1.ogg", common .. "rifle_magdrop_2.ogg", common .. "rifle_magdrop_3.ogg", common .. "rifle_magdrop_4.ogg", common .. "rifle_magdrop_p.ogg"}
 
 SWEP.Animations = {
     ["draw"] = {
@@ -424,6 +425,7 @@ SWEP.Animations = {
             {s = rottle, t = 1.65},
             {s = rutle, t = 1.68},
             {s = path .. "struggle.ogg", t = 2.3},
+            {s = magdrop, t = 2.45, p = 87.5},
             {s = path .. "magin.ogg", t = 2.85},
             {s = path .. "grab.ogg", t = 2.8},
             {s = rottle, t = 3.0},
@@ -479,6 +481,7 @@ SWEP.Animations = {
             {s = rottle, t = 1.65},
             {s = rutle, t = 1.68},
             {s = path .. "struggle.ogg", t = 2.3},
+            {s = magdrop, t = 2.45, p = 95},
             {s = path .. "magin.ogg", t = 2.85},
             {s = path .. "grab.ogg", t = 2.8},
             {s = rottle, t = 3.0},
