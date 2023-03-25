@@ -425,7 +425,7 @@ SWEP.Animations = {
             {s = rottle, t = 1.65},
             {s = rutle, t = 1.68},
             {s = path .. "struggle.ogg", t = 2.3},
-            {s = magdrop, t = 2.45, p = 87.5},
+            {s = magdrop, t = 2.45, p = 87.5, v = 0.35},
             {s = path .. "magin.ogg", t = 2.85},
             {s = path .. "grab.ogg", t = 2.8},
             {s = rottle, t = 3.0},
