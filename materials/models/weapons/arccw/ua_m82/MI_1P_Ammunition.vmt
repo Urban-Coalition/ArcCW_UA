@@ -1,20 +1,29 @@
-"VertexlitGeneric"
+"VertexLitGeneric"
 {
-	"$basetexture" "models\weapons\arccw\ua_m82/M82_Bullet_B"
-	"$bumpmap" "models\weapons\arccw\ua_m82/M82_Bullet_N"
+// maps
+	"$basetexture"				"models\weapons\arccw\ua_m82\M82_Bullet_B" // string -- main texture
+	"$bumpmap"					"models\weapons\arccw\ua_m82\M82_Bullet_N" // string -- normal map texture (bump map for brushes)
+	"$phongexponenttexture"		"models\weapons\arccw\ua_m82\M82_Bullet_E" // string -- phong exponent texture (contains info for other shaders)
 
-	"$color2" "[.4 .4 .4]"
+// map interp
+	"$color2"					"[.4 .4 .4]" // vector -- rgb tinting of the basetexture
+	"$blendTintByBaseAlpha"		"1" // bool -- uses base texture's alpha channel to mask color2's effect
 
-	"$phong" 		"1"
-	"$phongexponenttexture" "models\weapons\arccw\ua_m82\M82_Bullet_E"
-	"$phongboost" "2"
-	"$phongalbedotint" 			"1"
-	"$phongfresnelranges" "[0.5 1.5 3.0]"
+// phong (convar: mat_phong "bool")
+	"$phong"					"1" // bool -- phong enabler, have this on 1 if you have a central neural system
+	"$phongboost"				"1" // float -- phong intensity coefficient on top of normal map's alpha (aka phong mask)
+	"$phongfresnelranges"		"[.05 0.1 1]" // vector -- phong fresnel ranges, default are [0 0.5 1]
+	"$phongalbedotint" 			"1" // bool -- enables basetexture tinting of the phong's color but masks it with phongexponent's green channel
+    	"$phongtint" 			"[0 0 0]"
+// rimlight (convar: mat_rimlight "bool")
+	"$rimlight"					"0" // bool -- rimlight enabler, doesn't have to be on, use if needed
+	"$rimmask"					"0" // bool -- rimlight masking through exponent's alpha channel (use alpha vtf format)
+	"$rimlightboost"			"0" // float -- rimlight intensity coefficient
+	"$rimlightexponent"			"0" // float -- rimlight exponent
 
-	"$envmap" "env_cubemap"
-	"$envmaptint" "[.015 .015 .015]"
-
-	"$normalmapalphaenvmapmask" 	"1"
-	"$blendTintByBaseAlpha" "1"
 	"$nocull" "1"
+
+// envmap (convar: mat_specular "bool")
+	"$envmap"					"env_cubemap" // string -- path to envmap or envmap entity name
+	"$envmaptint"				"[.01 .01 .01]" // vector -- rgb tinting of the envmap: all dimentions should be equal, ideally
 }

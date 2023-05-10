@@ -1,20 +1,29 @@
-"VertexlitGeneric"
+"VertexLitGeneric"
 {
-	"$basetexture" "models\weapons\arccw\ua_m82/M82_B"
-	"$bumpmap" "models\weapons\arccw\ua_m82/M82_N"
+// maps
+	"$basetexture"				"models\weapons\arccw\ua_m82\M82_B" // string -- main texture
+	"$bumpmap"					"models\weapons\arccw\ua_m82\M82_N" // string -- normal map texture (bump map for brushes)
+	"$phongexponenttexture"		"models\weapons\arccw\ua_m82\M82_E" // string -- phong exponent texture (contains info for other shaders)
 
-	"$color2" "[1 1 1]"
+// map interp
+	"$color2"					"[.85 .85 .85]" // vector -- rgb tinting of the basetexture
+	"$blendTintByBaseAlpha"		"1" // bool -- uses base texture's alpha channel to mask color2's effect
 
-	"$phong" 		"1"
-	"$phongexponenttexture" "models\weapons\arccw\ua_m82\M82_E"
-	"$phongboost" "10"
-	"$phongalbedotint" 			"1"
-	"$phongfresnelranges" "[0.5 1.5 3.0]"
+// phong (convar: mat_phong "bool")
+	"$phong"					"1" // bool -- phong enabler, have this on 1 if you have a central neural system
+	"$phongboost"				"1" // float -- phong intensity coefficient on top of normal map's alpha (aka phong mask)
+	"$phongfresnelranges"		"[0.2 .6 .3]" // vector -- phong fresnel ranges, default are [0 0.5 1]
+	"$phongalbedotint" 			"1" // bool -- enables basetexture tinting of the phong's color but masks it with phongexponent's green channel
+    	"$phongtint" 			"[.17 .17 .17]"
+// rimlight (convar: mat_rimlight "bool")
+	"$rimlight"					"0" // bool -- rimlight enabler, doesn't have to be on, use if needed
+	"$rimmask"					"1" // bool -- rimlight masking through exponent's alpha channel (use alpha vtf format)
+	"$rimlightboost"			"1" // float -- rimlight intensity coefficient
+	"$rimlightexponent"			"1" // float -- rimlight exponent
 
-	"$envmap" "env_cubemap"
-	"$envmaptint" "[.005 .005 .015]"
-
-	"$normalmapalphaenvmapmask" 	"0"
-	"$blendTintByBaseAlpha" "1"
 	"$nocull" "1"
+
+// envmap (convar: mat_specular "bool")
+	"$envmap"					"env_cubemap" // string -- path to envmap or envmap entity name
+	"$envmaptint"				"[.001 .001 .001]" // vector -- rgb tinting of the envmap: all dimentions should be equal, ideally
 }
