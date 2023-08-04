@@ -7,7 +7,7 @@ SWEP.AdminOnly = false
 SWEP.PrintName = "Fuck-You-In-Particular-inator"
 SWEP.TrueName = "M82A1"
 SWEP.Trivia_Class = "Anti-materiel Rifle"
-SWEP.Trivia_Desc = [[Arguably the most recognizable anti-materiel rifle. As the first shoulder-fired weapon in .50 BMG, this massive, barely man-portable rifle has been adopted by militaries and outlaws worldwide to help individual marksmen counter heavy targets.
+SWEP.Trivia_Desc = [[The state firearm of Tennessee. As the first shoulder-fired weapon of its caliber, this massive, barely man-portable weapon popularized the idea of modern anti-materiel rifles as a way to help individual marksmen counter heavy targets.
     
 Chambered for a mounted machine gun cartridge designed to punch holes through cover and armored vehicles. To shoot a man with it might be overkill (or great fun, depending on your tastes).]]
 SWEP.Trivia_Manufacturer = "Barrett Firearms Manufacturing"
