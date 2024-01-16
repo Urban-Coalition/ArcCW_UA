@@ -53,8 +53,8 @@ end
 
 -- Viewmodel / Worldmodel / FOV --
 
-SWEP.ViewModel = "models/weapons/arccw/c_lowpolym249.mdl"
-SWEP.WorldModel = "models/weapons/w_rif_m4a1.mdl"
+SWEP.ViewModel = "models/weapons/arccw/c_ua_m249.mdl"
+SWEP.WorldModel = "models/weapons/w_rif_m249.mdl"
 SWEP.ViewModelFOV = 85
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 
@@ -296,7 +296,7 @@ SWEP.Animations = {
         Time = 330 / 60,
     },
     ["ready"] = {
-        Source = "idle",
+        Source = "beltfed_idle",
         Framerate = 60,
         Time = 68 / 60,
         LHIK = true,
@@ -308,32 +308,32 @@ SWEP.Animations = {
         },
     },
     ["draw"] = {
-        Source = "draw",
+        Source = "beltfed_draw",
         Framerate = 60,
     },
     ["trigger"] = {
-        Source = "idle",
+        Source = "beltfed_idle",
         Time = 0.075,
         SoundTable = {
             {s = path .. "prefire.ogg",         t = 0, c = CHAN_WEAPON, v = 0.5},
         },
     },
     ["trigger_iron"] = {
-        Source = "idle",
+        Source = "beltfed_idle",
         Time = 0.075,
         SoundTable = {
             {s = path .. "prefire.ogg",         t = 0, c = CHAN_WEAPON},
         },
     },
     ["fire"] = {
-        Source = "fire",
+        Source = "beltfed_fire01",
         Framerate = 60,
         Time = 43 / 60,
         ShellEjectAt = 0.01,
         SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
     },
     ["fire_iron"] = {
-        Source = "fire",
+        Source = "beltfed_fire",
         Framerate = 60,
         Time = 43 / 60,
         ShellEjectAt = 0.01,
@@ -343,14 +343,14 @@ SWEP.Animations = {
         },
     },
     ["fire_empty"] = {
-        Source = "fire_empty",
+        Source = "beltfed_fire01_empty",
         Framerate = 60,
         Time = 43 / 60,
         ShellEjectAt = 0.01,
         SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
     },
     ["fire_iron_empty"] = {
-        Source = "fire_empty",
+        Source = "beltfed_fire01_empty",
         Framerate = 60,
         Time = 43 / 60,
         ShellEjectAt = 0.01,
@@ -363,7 +363,7 @@ SWEP.Animations = {
     -- 100-R Reloads --
 
     ["reload"] = {
-        Source = "reload",
+        Source = "beltfed_reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         MinProgress = 1,
         Time = 298 / 60,
@@ -393,10 +393,10 @@ SWEP.Animations = {
         },
     },
     ["reload_empty"] = {
-        Source = "reload_empty",
+        Source = "beltfed_reload_empty",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         Framerate = 60,
-        Time = 344 / 60,
+        -- Time = 344 / 60,
         LastClip1OutTime = 3,
         LHIK = true,
         LHIKIn = 2.2,

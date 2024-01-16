@@ -1,0 +1,16 @@
+"VertexlitGeneric"
+{
+	$basetexture "models/weapons/arccw/ua_m249/m249_d"
+	$bumpmap "models/weapons/arccw/ua_m249/m249_n"
+	$normalmapalphaenvmapmask 1
+	
+	$phong 1
+	$phongboost 1.5
+	$phongexponent 35
+	$phongfresnelranges "[0.6 1 2]"
+	
+	$envmap "env_cubemap"
+	$envmapfresnel 1
+	$envmapFresnelMinMaxExp "[0 5 0.4]"
+	$envmaptint "[0.15 0.15 0.15]"
+}
