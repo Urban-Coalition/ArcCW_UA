@@ -55,7 +55,7 @@ end
 
 SWEP.ViewModel = "models/weapons/arccw/c_ua_m249.mdl"
 SWEP.WorldModel = "models/weapons/w_rif_m249.mdl"
-SWEP.ViewModelFOV = 85
+SWEP.ViewModelFOV = 65
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 
 -- Damage parameters --
@@ -140,13 +140,13 @@ SWEP.HoldtypeActive = "ar2"
 SWEP.HoldtypeSights = "rpg"
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-3.445, 0, 2),
-    Ang = Angle(0.1, 0, -2),
+    Pos = Vector(-3.685, 0, 1.28),
+    Ang = Angle(0.05, 0.005, 4),
     Magnification = 1,
     SwitchToSound = "",
 }
 
-SWEP.ActivePos = Vector(0, 0, 0)
+SWEP.ActivePos = Vector(0, 0, 1)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.CustomizePos = Vector(0, 0, 0)
@@ -157,15 +157,17 @@ SWEP.CrouchAng = Angle(0, 0, -8)
 
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
-    pos        =    Vector(-9, 4.75, -7.5),
-    ang        =    Angle(-6, 0, 180),
-    bone    =    "ValveBiped.Bip01_R_Hand",
+    pos = Vector(-9, 4.75, -7.5),
+    ang = Angle(-6, 0, 180),
+    bone = "ValveBiped.Bip01_R_Hand",
 }
 
 -- Weapon sounds --
 
 local path = ")^weapons/arccw_ue/m249/"
 local common = ")^/arccw_uc/common/"
+local rottle = {common .. "cloth_1.ogg", common .. "cloth_2.ogg", common .. "cloth_3.ogg", common .. "cloth_4.ogg", common .. "cloth_6.ogg", common .. "rattle.ogg"}
+local ratel = {common .. "rattle1.ogg", common .. "rattle2.ogg", common .. "rattle3.ogg"}
 
 SWEP.ShootSound = {
     path .. "fire-01.ogg",
@@ -225,8 +227,17 @@ SWEP.Hook_AddShootSound = ArcCW.UC.InnyOuty
 -- Bodygroups --
 
 SWEP.BulletBones = {
-    [1] = "Bullet1",    [2] = "Bullet2",    [3] = "Bullet3", [4] = "Bullet4",    [5] = "Bullet5",    [6] = "Bullet6",
-    [7] = "Bullet7",    [8] = "Bullet8",    [9] = "Bullet9", [10] = "Bullet10",    [11] = "Bullet11",    [12] = "Bullet12"
+	[1] = {"bullet1", "belt1"},
+	[2] = {"bullet2", "belt2"},
+	[3] = {"bullet3", "belt3"},
+	[4] = {"bullet4", "belt4"},
+	[5] = {"bullet5", "belt5"},
+	[6] = {"bullet6", "belt6"},
+	[7] = {"bullet7", "belt7"},
+	[8] = {"bullet8", "belt8"},
+	[9] = {"bullet9", "belt9"},
+	[10] = {"bullet10", "belt10"},
+	[11] = {"bullet11", "belt11"},
 }
 
 SWEP.DefaultBodygroups = "000000000"
@@ -284,14 +295,16 @@ SWEP.AttachmentElements = {
 
 -- Animations --
 
+local _FPS_RELOAD = 70
+
 SWEP.Animations = {
     ["idle"] = {
-        Source = "idle",
+        Source = "beltfed_idle",
         Framerate = 60,
         Time = 330 / 60,
     },
     ["idle_empty"] = {
-        Source = "idle_empty",
+        Source = "beltfed_idle_empty",
         Framerate = 60,
         Time = 330 / 60,
     },
@@ -310,16 +323,21 @@ SWEP.Animations = {
     ["draw"] = {
         Source = "beltfed_draw",
         Framerate = 60,
+		SoundTable = {
+			{s = common .. "raise.ogg", t = 10 / 65, c = ca},
+			{s = rottle, t = 20 / 65, c = ca},
+			{s = common .. "shoulder.ogg", t = 40 / 65, c = ca},
+		},
     },
     ["trigger"] = {
-        Source = "beltfed_idle",
+        Source = "beltfed_dryfire",
         Time = 0.075,
         SoundTable = {
             {s = path .. "prefire.ogg",         t = 0, c = CHAN_WEAPON, v = 0.5},
         },
     },
     ["trigger_iron"] = {
-        Source = "beltfed_idle",
+        Source = "beltfed_dryfire",
         Time = 0.075,
         SoundTable = {
             {s = path .. "prefire.ogg",         t = 0, c = CHAN_WEAPON},
@@ -333,7 +351,7 @@ SWEP.Animations = {
         SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
     },
     ["fire_iron"] = {
-        Source = "beltfed_fire",
+        Source = "beltfed_fire01_ads",
         Framerate = 60,
         Time = 43 / 60,
         ShellEjectAt = 0.01,
@@ -363,22 +381,22 @@ SWEP.Animations = {
     -- 100-R Reloads --
 
     ["reload"] = {
-        Source = "beltfed_reload",
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        MinProgress = 1,
-        Time = 298 / 60,
-        Framerate = 60,
-        LastClip1OutTime = 2.4,
-        LHIK = true,
-        LHIKIn = 0.2,
-        LHIKEaseIn = 0.2,
-        LHIKEaseOut = 0.2,
-        LHIKOut = 0.62,
-        SoundTable = {
-            { s = common .. "cloth_4.ogg", t = 4 / 30, c = ca },
-            { s = path .. "lidopen.ogg", t = 15 / 30, c = ca },
-            { s = path .. "belt1.ogg", t =  25 / 30, c = ca },
-            { s = common .. "cloth_2.ogg", t = 30 / 30, c = ca },
+		Source = "reload",
+		TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+		Time = 298 / 60,
+		Framerate = 60,
+		MinProgress = 1,
+		LastClip1OutTime = 2.4,
+		LHIK = true,
+		LHIKIn = 0.2,
+		LHIKEaseIn = 0.2,
+		LHIKEaseOut = 0.2,
+		LHIKOut = 0.62,
+		SoundTable = {
+			{ s = common .. "cloth_4.ogg", t = 4 / 30, c = ca },
+			{ s = path .. "lidopen.ogg", t = 15 / 30, c = ca },
+			{ s = path .. "belt1.ogg", t =  25 / 30, c = ca },
+			{ s = common .. "cloth_2.ogg", t = 30 / 30, c = ca },
             { s = path .. "boxremove.ogg", t = 45 / 30, c = ca },
             { s = common .. "cloth_3.ogg", t = 50 / 30, c = ca },
             { s = path .. "boxstruggle.ogg", t = 70 / 30, c = ca },
@@ -395,31 +413,38 @@ SWEP.Animations = {
     ["reload_empty"] = {
         Source = "beltfed_reload_empty",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        Framerate = 60,
-        -- Time = 344 / 60,
-        LastClip1OutTime = 3,
+        Framerate = _FPS_RELOAD,
+        Time = 560 / _FPS_RELOAD,
+		MinProgress = 7,
+        LastClip1OutTime = 2,
         LHIK = true,
         LHIKIn = 2.2,
         LHIKEaseIn = 0.1,
         LHIKEaseOut = 0.15,
         LHIKOut = 0.7,
         SoundTable = {
-            { s = common .. "cloth_4.ogg", t = 4 / 30, c = ca },
-            { s = path .. "chback.ogg", t = 15 / 30, c = ca },
-            { s = path .. "chforward.ogg", t = 20 / 30, c = ca },
-            { s = common .. "cloth_1.ogg", t = 25 / 30, c = ca },
-            { s = path .. "lidopen.ogg", t = 40 / 30, c = ca },
-            { s = common .. "cloth_2.ogg", t = 40 / 30, c = ca },
-            { s = path .. "boxremove.ogg", t = 65 / 30, c = ca },
-            { s = common .. "cloth_3.ogg", t = 80 / 30, c = ca },
-            { s = path .. "boxstruggle.ogg", t = 94 / 30, c = ca },
-            { s = path .. "boxinsert.ogg", t = 100 / 30, c = ca },
-            { s = path .. "belt2.ogg", t =  110 / 30, c = ca },
-            { s = path .. "beltadjust.ogg", t =  111 / 30, c = ca },
-            { s = common .. "cloth_2.ogg", t = 125 / 30, c = ca },
-            { s = path .. "lidclose.ogg", t = 125 / 30, c = ca, v = 1 },
-            { s = path .. "grab.ogg", t = 150 / 30, c = ca, v = 0.25 },
-            { s = common .. "shoulder.ogg", t = 155 / 30, c = ca },
+			{s = common .. "cloth_4.ogg", t = 1 / _FPS_RELOAD, c = ca},
+			{s = path .. "chback.ogg", t = 25 / _FPS_RELOAD, c = ca},
+			{s = path .. "chforward.ogg", t = 50 / _FPS_RELOAD, c = ca},
+			{s = ratel, t = 60 / _FPS_RELOAD, c = ca},
+			{s = ratel, t = 70 / _FPS_RELOAD, c = ca},
+			{s = common .. "cloth_1.ogg", t = 80 / _FPS_RELOAD, c = ca},
+			{s = path .. "lidopen.ogg", t = 140 / _FPS_RELOAD, c = ca},
+			{s = common .. "cloth_2.ogg", t = 175 / _FPS_RELOAD, c = ca},
+			{s = path .. "boxremove.ogg", t = 200 / _FPS_RELOAD, c = ca},
+			{s = common .. "magpouch.ogg", t = 201 / _FPS_RELOAD, c = ca},
+			{s = ratel, t = 210 / _FPS_RELOAD, c = ca},
+			{s = ratel, t = 225 / _FPS_RELOAD, c = ca},
+			{s = common .. "magpouch_gear.ogg", t = 235 / _FPS_RELOAD, c = ca, v = 0.5},
+			--{s = common .. "cloth_3.ogg", t = 285 / _FPS_RELOAD, c = ca},
+			{s = path .. "boxstruggle.ogg", t = 290 / _FPS_RELOAD, c = ca},
+			{s = path .. "boxinsert.ogg", t = 325 / _FPS_RELOAD, c = ca},
+			{s = path .. "belt1.ogg", t =  368 / _FPS_RELOAD, c = ca},
+			{s = path .. "beltadjust.ogg", t =  403 / _FPS_RELOAD, c = ca},
+			{s = rottle, t = 435 / _FPS_RELOAD, c = ca},
+			{s = path .. "lidclose.ogg", t = 450 / _FPS_RELOAD, c = ca},
+			{s = rottle, t = 495 / _FPS_RELOAD, c = ca, v = 1},
+			{s = path .. "grab.ogg", t = 510 / _FPS_RELOAD, c = ca},
         },
     },
     
@@ -510,14 +535,15 @@ SWEP.Attachments = {
         PrintName = "Optic",
         Slot = {"optic_lp", "optic", "sniper_optic"},
         DefaultAttName = "Iron Sights",
-        Bone = "topcover",
+        Bone = "top_hinge",
         Offset = {
-            vpos = Vector(-0.24, -0.6, -5),
-            vang = Angle(90, 0, -90),
+            vpos = Vector(-0.7, 5, 0),
+            vang = Angle(90, 90, 0),
         },
         ExtraSightDist = 10,
         InstalledEles = {"nors"},
-        CorrectivePos = Vector(0.13, 0, 0.33),
+        CorrectivePos = Vector(0, 0, 0),
+		CorrectiveAng = Angle(0, 180, 0),
     },
     {
         PrintName = "Handguard",
@@ -534,37 +560,37 @@ SWEP.Attachments = {
         PrintName = "Muzzle",
         DefaultAttName = "Standard Muzzle",
         Slot = {"muzzle"},
-        Bone = "Barrel",
+        Bone = "parent",
         Offset = {
-            vpos = Vector(0, 0, -4),
-            vang = Angle(90, 0, -90),
+            vpos = Vector(-0.025, -27.8, 0),
+            vang = Angle(0, 90, 90),
         },
         InstalledEles = {"nofh"},
     },
     { 
         PrintName = "Underbarrel",
         Slot = {"foregrip","bipod","ubgl"},
-        Bone = "Body",
+        Bone = "parent",
         Offset = {
-            vpos = Vector(-0.05, 0.5, 1),
-            vang = Angle(90, 0, -90),
+            vpos = Vector(3.7, -8, 0), -- that's sooo bad, wrist is completely fucked up
+            vang = Angle(90, 90, 0),
         },
         ExcludeFlags = {"fnchand"},
     },
     {
-        PrintName = "Tactical",
+        PrintName = "Tactical", -- ain't no rail lol
         Slot = {"tac"},
-        Bone = "Body",
+        Bone = "parent",
         Offset = {
-            vpos = Vector(-0.8, -1, 1),
-            vang = Angle(90, 0, 180),
+            vpos = Vector(0, -22, -0.2),
+            vang = Angle(0, 90, 0),
         },
     },
     {
         PrintName = "Mag Type",
         Slot = {"lpm249_mag"},
 		DefaultAttIcon = Material("entities/att/acwatt_lpfal_defmag.png"),
-        DefaultAttName = "100-Round Standard Box",
+        DefaultAttName = "200-Round Standard Box",
     },
     {
         PrintName = "Stock",
@@ -603,10 +629,10 @@ SWEP.Attachments = {
         PrintName = "Charm",
         Slot = {"charm","fml_charm"},
         FreeSlot = true,
-        Bone = "Body",
+        Bone = "parent",
         Offset = {
-            vpos = Vector(0.5, -0.1, -14),
-            vang = Angle(90, 0, -90),
+            vpos = Vector(0.2, 4, -0.8),
+            vang = Angle(90, 90, 0),
         },
     },
 }
