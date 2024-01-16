@@ -71,7 +71,7 @@ SWEP.PhysBulletMuzzleVelocity = 915
 -- Mag size --
 
 SWEP.ChamberSize = 0
-SWEP.Primary.ClipSize = 100
+SWEP.Primary.ClipSize = 200
 
 -- Recoil --
 
@@ -157,7 +157,7 @@ SWEP.CrouchAng = Angle(0, 0, -8)
 
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
-    pos        =    Vector(-12, 4.5, -5.5),
+    pos        =    Vector(-9, 4.75, -7.5),
     ang        =    Angle(-6, 0, 180),
     bone    =    "ValveBiped.Bip01_R_Hand",
 }
