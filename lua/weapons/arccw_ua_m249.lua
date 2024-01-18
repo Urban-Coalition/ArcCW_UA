@@ -180,7 +180,7 @@ SWEP.ShootSound = {
 SWEP.ShootSoundSilenced = path .. "fire_supp.ogg"
 SWEP.DistantShootSound = nil
 SWEP.DistantShootSoundSilenced = common .. "sup_tail.ogg"
-SWEP.ShootDrySound = path .. "dryfire.ogg"
+SWEP.ShootDrySound = nil
 
 local tail = ")^/arccw_uc/common/556x45/"
 
@@ -427,22 +427,28 @@ SWEP.Animations = {
 			{s = rottle, t = 0, c = ca},
 			{s = path .. "lidopen.ogg", t = 30 / _FPS_RELOAD, c = ca},
 			{s = ratel, t = 40 / _FPS_RELOAD, c = ca},
-			{s = path .. "belt2.ogg", t =  85 / _FPS_RELOAD, c = ca},
-			{s = rottle, t = 135 / _FPS_RELOAD, c = ca},
+			{s = path .. "belt1.ogg", t =  85 / _FPS_RELOAD, c = ca},
+			{s = rottle, t = 120 / _FPS_RELOAD, c = ca},
+            {s = ratel, t = 140 / _FPS_RELOAD, c = ca},
+            {s = ratel, t = 165 / _FPS_RELOAD, c = ca},
             {s = path .. "boxremove.ogg", t = 195 / _FPS_RELOAD, c = ca},
-			{s = common .. "magpouch.ogg", t = 196 / _FPS_RELOAD, c = ca},
+			{s = common .. "magpouch.ogg", t = 211 / _FPS_RELOAD, c = ca},
 			{s = ratel, t = 200 / _FPS_RELOAD, c = ca},
 			{s = ratel, t = 210 / _FPS_RELOAD, c = ca},
 			{s = ratel, t = 220 / _FPS_RELOAD, c = ca},
 			{s = common .. "magpouch_gear.ogg", t = 230 / _FPS_RELOAD, c = ca, v = 0.5},
+            {s = rottle, t = 270 / _FPS_RELOAD, c = ca},
             {s = path .. "boxstruggle.ogg", t = 290 / _FPS_RELOAD, c = ca},
             {s = path .. "boxinsert.ogg", t = 305 / _FPS_RELOAD, c = ca},
-            {s = path .. "belt1.ogg", t =  360 / _FPS_RELOAD, c = ca},
+            {s = rottle, t = 325 / _FPS_RELOAD, c = ca},
+            {s = path .. "belt2.ogg", t =  358 / _FPS_RELOAD, c = ca},
             {s = path .. "beltadjust.ogg", t =  390 / _FPS_RELOAD, c = ca},
 			{s = rottle, t = 425 / _FPS_RELOAD, c = ca},
-            {s = path .. "lidclose.ogg", t = 435 / _FPS_RELOAD, c = ca},
+            {s = path .. "lidclose.ogg", t = 432 / _FPS_RELOAD, c = ca},
+            {s = path .. "lidtap.ogg", t = 475 / _FPS_RELOAD, c = ca},
 			{s = rottle, t = 455 / _FPS_RELOAD, c = ca},
-            {s = path .. "grab.ogg", t = 510 / _FPS_RELOAD, c = ca},
+            {s = path .. "grab.ogg", t = 505 / _FPS_RELOAD, c = ca},
+			{s = common .. "shoulder.ogg", t = 511 / _FPS_RELOAD, c = ca, v = 0.5},
         },
     },
     ["reload_empty"] = {
